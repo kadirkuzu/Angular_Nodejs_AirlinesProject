@@ -1,5 +1,5 @@
 <div class="main">
-    <mat-table [dataSource]="airports" class="mat-elevation-z8 demo-table">
+    <table mat-table [dataSource]="airports" class="mat-elevation-z8 demo-table" *ngIf="airports.length;else:notFound">
         <!-- Position Column -->
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -26,5 +26,8 @@
       
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </mat-table>
+      </table>
+      <ng-template #notFound>
+        Airports could not be found. You can add <span routerLink="/add-airport" class="router-text">here</span>
+      </ng-template>
 </div>

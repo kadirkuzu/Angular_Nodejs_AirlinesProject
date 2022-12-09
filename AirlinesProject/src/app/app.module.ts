@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { HeaderComponent } from './components/header/header/header.component';
 import { SharedModule } from './components/shared/shared.module';
+import { AddAirportComponent } from './components/pages/airports-page/add-airport/add-airport.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SharedModule } from './components/shared/shared.module';
     AircraftsPageComponent,
     AirportsPageComponent,
     NavbarComponent,
-    HeaderComponent
+    HeaderComponent,
+    AddAirportComponent
   ],
   imports: [
     BrowserModule,

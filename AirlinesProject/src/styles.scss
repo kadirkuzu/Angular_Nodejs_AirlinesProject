@@ -6,5 +6,9 @@
     padding: 10px 30px;
     border-radius: 10px;
     border:2px solid $gray-400;
-
+}
+.router-text{
+    cursor: pointer;
+    color: $primary;
+    font-weight: 600;
 }
