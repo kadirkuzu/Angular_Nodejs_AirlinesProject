@@ -17,13 +17,13 @@ export const getById = (req,res) =>{
     })
 }
 
-export const add = (req,res) =>{
+export const register = (req,res) =>{
     const {name,email,fullName,age,password} = req.body
     pool.query(queries.checkEmailExist,[email],(error,results)=>{
         if(error) res.status(404).json({message:error.message})
         else if(results.rows.length) res.status(404).json({message:"Email already exists."})
         else {
-            pool.query(queries.add,[name,email,fullName,age,password],(error,results)=>{
+            pool.query(queries.register,[name,email,fullName,age,password],(error,results)=>{
                 if(error) res.status(404).json({message:error.message})
                 res.status(201).json(results.rows)
             })

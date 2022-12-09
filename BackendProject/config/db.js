@@ -7,7 +7,7 @@ const database = new pg.Client({
     connectionString:process.env.PG_CONNECTION
 });
 
-export const createDatabase = async () => {
+export const createDatabaseINE = async () => {
     try {
         await database.connect();
         await database.query(queries.createDatase);

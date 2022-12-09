@@ -1,6 +1,6 @@
 import express from "express"
 import dotenv from "dotenv"
-import pool,{createDatabase} from "./config/db.js"
+import pool,{createDatabaseINE} from "./config/db.js"
 import userRouter from './routers/user/router.js'
 import airportRouter from './routers/airport/router.js'
 import cors from 'cors'
@@ -15,7 +15,8 @@ app.use(cors({origin: 'http://localhost:4200'}));
 
 const PORT = process.env.PORT || 3000
 
-await createDatabase()
+await createDatabaseINE()
+
 app.listen(PORT,()=>{
     console.log(`Listening on port ${PORT}`);
     pool.connect(err=>{

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Airport } from 'src/app/models/airport';
+import { AirportService } from 'src/app/services/airport.service';
 
 @Component({
   selector: 'app-airports-page',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AirportsPageComponent implements OnInit {
 
-  constructor() { }
+  airports?:Airport[]
+  displayedColumns: string[] = ['name', 'code', 'city', 'country'];
+  constructor(private airportService:AirportService) { }
+
 
   ngOnInit(): void {
+    this.getAirports()
+  }
+
+  getAirports(){
+    this.airportService.getAll().subscribe(data=>{
+      this.airports = data
+    })
   }
 
 }

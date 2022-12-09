@@ -7,18 +7,24 @@ import { HomePageComponent } from './components/pages/home-page/home-page.compon
 import { AircraftsPageComponent } from './components/pages/aircrafts-page/aircrafts-page.component';
 import { AirportsPageComponent } from './components/pages/airports-page/airports-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './components/header/navbar/navbar.component';
+import { HeaderComponent } from './components/header/header/header.component';
+import { MatTableModule } from '@angular/material/table' 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     AircraftsPageComponent,
-    AirportsPageComponent
+    AirportsPageComponent,
+    NavbarComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    MatTableModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
