@@ -9,7 +9,7 @@ import { AirportsPageComponent } from './components/pages/airports-page/airports
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { HeaderComponent } from './components/header/header/header.component';
-import { MatTableModule } from '@angular/material/table' 
+import { SharedModule } from './components/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -23,8 +23,8 @@ import { MatTableModule } from '@angular/material/table'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatTableModule,
     HttpClientModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
