@@ -2,6 +2,7 @@ import express from "express"
 import dotenv from "dotenv"
 import pool,{createDatabase} from "./config/db.js"
 import userRouter from './routers/user/router.js'
+import airportRouter from './routers/airport/router.js'
 import cors from 'cors'
 
 dotenv.config()
@@ -24,3 +25,5 @@ app.listen(PORT,()=>{
 })
 
 app.use('/users',userRouter)
+
+app.use('/airports',airportRouter)

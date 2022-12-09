@@ -11,7 +11,7 @@ export class AircraftService {
   constructor(private http: HttpClient, private router: Router) {}
 
   getAll(): Observable<any> {
-    return this.http.get<any>(environment.api + `users`);
+    return this.http.get<any>(environment.api + `airports`);
   }
   
 }
