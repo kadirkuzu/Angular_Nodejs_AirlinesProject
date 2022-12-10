@@ -1,2 +1,3 @@
 <app-navbar></app-navbar>
-<button class="btn btn-primary header-buttons">login</button>
+<button *ngIf="!isLogged()" class="btn btn-primary header-buttons" routerLink="login">Login</button>
+<button *ngIf="isLogged()" class="btn btn-danger header-buttons" (click)="logOut()" >Log out</button>

@@ -11,10 +11,7 @@ export class AircraftsPageComponent implements OnInit {
   constructor(private aircraftService:AircraftService) { }
 
   ngOnInit(): void {
-    this.aircraftService.getAll().subscribe(data=>{
-      console.log(data);
-      
-    })
+    
   }
 
 }

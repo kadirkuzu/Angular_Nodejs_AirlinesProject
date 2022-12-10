@@ -20,27 +20,24 @@ CREATE TABLE IF NOT EXISTS "aircrafts" (
 
 CREATE TABLE IF NOT EXISTS "persons" (
     "id" SERIAL PRIMARY KEY,
-    "name" text NOT NULL,
-    "email" text NOT NULL unique,
     "fullname" text NOT NULL,
+    "email" text NOT NULL unique,
     "age" INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "users" (
     "id" SERIAL PRIMARY KEY,
     "password" text NOT NULL,
-    "name" text NOT NULL,
-    "email" text NOT NULL unique,
     "fullname" text NOT NULL,
+    "email" text NOT NULL unique,
     "age" INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "clients" (
     "id" SERIAL PRIMARY KEY,
     "dob" text NOT NULL,
-    "name" text NOT NULL,
-    "email" text NOT NULL unique,
     "fullname" text NOT NULL,
+    "email" text NOT NULL unique,
     "age" INT NOT NULL
 );
 

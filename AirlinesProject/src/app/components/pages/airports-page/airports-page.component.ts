@@ -11,6 +11,7 @@ export class AirportsPageComponent implements OnInit {
 
   airports:Airport[] = []
   displayedColumns: string[] = ['name', 'code', 'city', 'country'];
+  isLoading:boolean = true
   constructor(private airportService:AirportService) { }
 
 
@@ -20,7 +21,8 @@ export class AirportsPageComponent implements OnInit {
 
   getAirports(){
     this.airportService.getAll().subscribe(data=>{  
-      this.airports?.forEach((airport)=>this.airports.push({...airport}))
+      this.airports = data
+      this.isLoading = false
     })
   }
 

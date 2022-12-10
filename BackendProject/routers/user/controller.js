@@ -18,14 +18,14 @@ export const getById = (req,res) =>{
 }
 
 export const register = (req,res) =>{
-    const {name,email,fullName,age,password} = req.body
+    const {fullName,email,age,password} = req.body
     pool.query(queries.checkEmailExist,[email],(error,results)=>{
         if(error) res.status(404).json({message:error.message})
         else if(results.rows.length) res.status(404).json({message:"Email already exists."})
         else {
-            pool.query(queries.register,[name,email,fullName,age,password],(error,results)=>{
+            pool.query(queries.register,[fullName,email,age,password],(error,results)=>{
                 if(error) res.status(404).json({message:error.message})
-                res.status(201).json(results.rows)
+                else res.status(201).json({fullName,email,age})
             })
         }
     })
@@ -42,7 +42,7 @@ export const login = (req,res) =>{
 
 export const update = (req,res) =>{
     const {id} = req.params
-    const values = [req.body.name,req.body.email,req.body.fullName,req.body.age,id]
+    const values = [req.body.name,req.body.email,req.body.age,id]
     pool.query(queries.update,values,(error,results) => {
         if(error) res.status(404).json({message:error.message})
         else if(!results.rows.length) res.status(404).json({message:"User not found."})

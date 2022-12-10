@@ -1,0 +1,28 @@
+<div class="main login">
+    <form [formGroup]="loginForm">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <div>
+                <input [ngClass]="{ 'is-invalid': email?.invalid   && (email?.dirty || email?.touched)}" formControlName="email"
+                    type="text" class="form-control" id="email" placeholder="Email">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <div class="w-100 position-relative">
+                <input #password1 [ngClass]="{ 'is-invalid': password?.invalid   && (password?.dirty || password?.touched)}" formControlName="password"
+                    type="password" class="form-control" id="password" placeholder="Password">
+                <div class="password-button" (click)="password1.type=='text'?password1.type='password':password1.type='text'">
+                    {{password1.type=='text'?'Hide':'Show'}}
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="text-center">
+        <button class="btn btn-primary w-100" [disabled]="loginForm.invalid" (click)="login()">Login</button>
+    </div>
+    <div class="text-end mt-3">
+        Don't have an account?  <span class="router-text" routerLink="/register">Create account</span>
+    </div>
+</div>
+

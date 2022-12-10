@@ -2,10 +2,14 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { MatTableModule } from '@angular/material/table' 
+import { MatTableModule } from '@angular/material/table';
+import { TableComponent } from './table/table.component' 
+import { NgSelectModule } from "@ng-select/ng-select";
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    TableComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -14,7 +18,8 @@ import { MatTableModule } from '@angular/material/table'
     MatTableModule,
   ],
   exports: [
-    MatTableModule
+    MatTableModule,
+    TableComponent
   ]
 })
 export class SharedModule { }

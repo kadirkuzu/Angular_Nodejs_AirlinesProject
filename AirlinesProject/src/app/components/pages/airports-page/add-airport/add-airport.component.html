@@ -1,1 +1,36 @@
-<p>add-airport works!</p>
+<div class="main">
+    <form [formGroup]="addAirportForm">
+        <div class="mb-3">
+            <label for="designerName" class="form-label">Name</label>
+            <div>
+                <input [ngClass]="{ 'is-invalid': name?.invalid   && (name?.dirty || name?.touched)}" formControlName="name"
+                    type="text" class="form-control" id="designerName" placeholder="Name">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="code" class="form-label">Code</label>
+            <div>
+                <input [ngClass]="{ 'is-invalid': code?.invalid   && (code?.dirty || code?.touched)}" formControlName="code"
+                    type="text" class="form-control" id="code" placeholder="Code">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="city" class="form-label">City</label>
+            <div>
+                <input [ngClass]="{ 'is-invalid': city?.invalid   && (city?.dirty || city?.touched)}" formControlName="city"
+                    type="text" class="form-control" id="city" placeholder="City">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="country" class="form-label">Country</label>
+            <div>
+                <input [ngClass]="{ 'is-invalid': country?.invalid   && (country?.dirty || country?.touched)}" formControlName="country"
+                    type="text" class="form-control" id="country" placeholder="Country">
+            </div>
+        </div>
+        <div class="text-end">
+            <button class="btn btn-danger" style="margin-right: 20px;" (click)="discard()">Discard changes</button>
+            <button class="btn btn-primary" [disabled]="addAirportForm.invalid" (click)="add()">Add</button>
+        </div>
+    </form>
+</div>
