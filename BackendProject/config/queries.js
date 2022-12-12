@@ -27,19 +27,13 @@ CREATE TABLE IF NOT EXISTS "persons" (
 
 CREATE TABLE IF NOT EXISTS "users" (
     "id" SERIAL PRIMARY KEY,
-    "password" text NOT NULL,
-    "fullname" text NOT NULL,
-    "email" text NOT NULL unique,
-    "age" INT NOT NULL
-);
+    "password" text NOT NULL
+) INHERITS (persons);
 
 CREATE TABLE IF NOT EXISTS "clients" (
     "id" SERIAL PRIMARY KEY,
-    "dob" text NOT NULL,
-    "fullname" text NOT NULL,
-    "email" text NOT NULL unique,
-    "age" INT NOT NULL
-);
+    "dob" text NOT NULL
+) INHERITS (persons);
 
 CREATE TABLE IF NOT EXISTS "flights" (
     "id" SERIAL PRIMARY KEY,
