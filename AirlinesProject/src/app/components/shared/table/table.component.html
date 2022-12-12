@@ -25,7 +25,9 @@
   
     <tr mat-header-row *matHeaderRowDef="columns"></tr>
     <tr mat-row *matRowDef="let row; columns: columns;"></tr>
-  </table>
-  <ng-template #notFound>
-    Airports could not be found. You can add <span routerLink="/add-airport" class="router-text">here</span>
-  </ng-template>
+</table>
+<ng-template #notFound>
+  <div  class="alert alert-secondary  mt-3" role="alert">
+    {{tableName}} could not be found. You can add <span routerLink="/add-airport" class="router-text">here</span>
+  </div>
+</ng-template>
