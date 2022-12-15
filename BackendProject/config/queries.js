@@ -1,217 +1,218 @@
-export let createDatase = "CREATE DATABASE airliensdatabase"
+export let createDatase = `CREATE DATABASE "AirliensDatabase"`
 export let createTables = 
 `
 CREATE EXTENSION pgcrypto;
 
 --COMPANIES
-CREATE TABLE Company
+CREATE TABLE "Company"
 (
-	company_name VARCHAR(50) NOT NULL,
+	name VARCHAR(50) NOT NULL,
 	country VARCHAR(3) DEFAULT 'TUR', --convert inputs to upper with func
 	city VARCHAR(50) DEFAULT 'Istanbul',
-	contact_name VARCHAR(50),
-	contact_number VARCHAR(12)
+	"contactName" VARCHAR(50),
+	"contactNumber" VARCHAR(12)
 	
 );
 
-CREATE TABLE Manifacturer
+CREATE TABLE "Manifacturer"
 (
-	manifacturer_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
-) INHERITS (Company);
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
+) INHERITS ("Company");
 
-CREATE TABLE PlaneOwner
+CREATE TABLE "PlaneOwner"
 (
-	PlaneOwner_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
-) INHERITS (Company);
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
+) INHERITS ("Company");
 
-CREATE TABLE AirportManagement
+CREATE TABLE "AirportManagement"
 (
-	AirportManagement_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
-) INHERITS (Company);
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
+) INHERITS ("Company");
 
-CREATE TABLE GroundServices
+CREATE TABLE "GroundServices"
 (
-	GroundServices_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
-) INHERITS (Company);
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
+) INHERITS ("Company");
 
 
 --PLANE STUFF
 
-CREATE TABLE PlaneModel
+CREATE TABLE "PlaneModel"
 (
-	model_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	manifacturer_id INT NOT NULL,
-	model_name VARCHAR(50) UNIQUE,
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	"manifacturerId" INT NOT NULL,
+	"modelName" VARCHAR(50) UNIQUE,
 	capacity INT,
-	CONSTRAINT fk_manifacturer FOREIGN KEY (manifacturer_id) REFERENCES Manifacturer(manifacturer_id)
+	CONSTRAINT fk_manifacturer FOREIGN KEY ("manifacturerId") REFERENCES "Manifacturer"(id)
 );
 
 
-CREATE TABLE Plane
+CREATE TABLE "Plane"
 (
-	plane_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	owner_id INT NOT NULL,
-	model_id INT NOT NULL,
-	plane_name VARCHAR(50) NOT NULL,
-	year_bought int DEFAULT 2000,
-	check(year_bought >= 1800 and year_bought <= 2100),
-	CONSTRAINT fk_owner FOREIGN KEY (owner_id) REFERENCES PlaneOwner(PlaneOwner_id),
-	CONSTRAINT fk_model FOREIGN KEY (model_id) REFERENCES PlaneModel(model_id)
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	"ownerId" INT NOT NULL,
+	"modelId" INT NOT NULL,
+	"planeName" VARCHAR(50) NOT NULL,
+	"yearBought" int DEFAULT 2000,
+	check("yearBought" >= 1800 and "yearBought" <= 2100),
+	CONSTRAINT fk_owner FOREIGN KEY ("ownerId") REFERENCES "PlaneOwner"(id),
+	CONSTRAINT fk_model FOREIGN KEY ("modelId") REFERENCES "PlaneModel"(id)
 );
 
 
 
 -- PERSON
 
-CREATE TABLE Person
+CREATE TABLE "Person"
 (
-	person_name VARCHAR(50) NOT NULL,
-	person_phone VARCHAR(50) NOT NULL,
-	person_nationality VARCHAR(3) NOT NULL,
-	person_birthyear INT NOT NULL,
-	check(person_birthyear >= 1700 and person_birthyear <= 2100)
+	name VARCHAR(50) NOT NULL,
+	phone VARCHAR(50) NOT NULL,
+	nationality VARCHAR(3) NOT NULL,
+	dob INT NOT NULL,
+	check(dob >= 1700 and dob <= 2100)
 );
 
-CREATE TABLE Customer
+CREATE TABLE "Customer"
 (
-	customer_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	customer_rank INT NOT NULL DEFAULT 0,
-	check(customer_rank >= 0 and customer_rank <= 10)
-) INHERITS (Person);
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	password VARCHAR(50) NOT NULL,
+	"customerRank" INT NOT NULL DEFAULT 0,
+	check("customerRank" >= 0 and "customerRank" <= 10)
+) INHERITS ("Person");
 
 
-CREATE TABLE Employee
+CREATE TABLE "Employee"
 (
 	salary INT NOT NULL
-) INHERITS (Person);
+) INHERITS ("Person");
 
-CREATE TABLE Pilot
+CREATE TABLE "Pilot"
 (
-	pilot_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	year_started INT NOT NULL,
-	check(year_started >= 1800 and year_started <= 2100)
-) INHERITS (Employee);
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	"yearStarted" INT NOT NULL,
+	check("yearStarted" >= 1800 and "yearStarted" <= 2100)
+) INHERITS ("Employee");
 
-CREATE TABLE CabinPersonel
+CREATE TABLE "CabinPersonel"
 (
-	cabinpersonel_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
 	
-) INHERITS (Employee);
+) INHERITS ("Employee");
 
-CREATE TABLE CabinCrew
+CREATE TABLE "CabinCrew"
 (
-	CCrew_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	pilot_id INT NOT NULL,
-	CONSTRAINT fk_pilot FOREIGN KEY (pilot_id) REFERENCES Pilot(pilot_id)
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	"pilotId" INT NOT NULL,
+	CONSTRAINT fk_pilot FOREIGN KEY ("pilotId") REFERENCES "Pilot"(id)
 );
 
-CREATE TABLE CabinCrewPersonel
+CREATE TABLE "CabinCrewPersonel"
 (
-	CCrew_id INT NOT NULL,
-	cabinpersonel_id INT NOT NULL,
-	PRIMARY KEY(CCrew_id, cabinpersonel_id),
-	CONSTRAINT fk_CCrew FOREIGN KEY (CCrew_id) REFERENCES CabinCrew(CCrew_id),
-	CONSTRAINT fk_cabinpersonel FOREIGN KEY (cabinpersonel_id) REFERENCES CabinPersonel(cabinpersonel_id)
+	"ccrewId" INT NOT NULL,
+	"cabinPersonelId" INT NOT NULL,
+	PRIMARY KEY("ccrewId", "cabinPersonelId"),
+	CONSTRAINT "fk_CCrew" FOREIGN KEY ("ccrewId") REFERENCES "CabinCrew"(id),
+	CONSTRAINT fk_cabinpersonel FOREIGN KEY ("cabinPersonelId") REFERENCES "CabinPersonel"(id)
 );
 
 
-CREATE TABLE GroundServicesChief
+CREATE TABLE "GroundServicesChief"
 (
-	GSChief_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	year_started INT NOT NULL,
-	check(year_started >= 1800 and year_started <= 2100)
-) INHERITS (Employee);
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	"yearStarted" INT NOT NULL,
+	check("yearStarted" >= 1800 and "yearStarted" <= 2100)
+) INHERITS ("Employee");
 
-CREATE TABLE GroundServicesPersonel
+CREATE TABLE "GroundServicesPersonel"
 (
-	GSPersonel_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
-) INHERITS (Employee);
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
+) INHERITS ("Employee");
 
-CREATE TABLE GroundServicesCrew
+CREATE TABLE "GroundServicesCrew"
 (
-	GSCrew_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	GSChief_id INT NOT NULL,
-	CONSTRAINT fk_chief FOREIGN KEY (GSChief_id) REFERENCES GroundServicesChief(GSChief_id)
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	"gsCheifId" INT NOT NULL,
+	CONSTRAINT fk_chief FOREIGN KEY ("gsCheifId") REFERENCES "GroundServicesChief"(id)
 );
 
-CREATE TABLE GroundServicesCrewPersonel
+CREATE TABLE "GroundServicesCrewPersonel"
 (
-	GSCrew_id INT NOT NULL,
-	GSPersonel_id INT NOT NULL,
-	PRIMARY KEY(GSCrew_id, GSPersonel_id),
-	CONSTRAINT fk_GSCrew FOREIGN KEY (GSCrew_id) REFERENCES GroundServicesCrew(GSCrew_id),
-	CONSTRAINT fk_GSCPersonel FOREIGN KEY (GSPersonel_id) REFERENCES GroundServicesPersonel(GSPersonel_id)
+	"gsCrewId" INT NOT NULL,
+	"gsPersonelId" INT NOT NULL,
+	PRIMARY KEY("gsCrewId", "gsPersonelId"),
+	CONSTRAINT fk_GSCrew FOREIGN KEY ("gsCrewId") REFERENCES "GroundServicesCrew"(id),
+	CONSTRAINT fk_GSCPersonel FOREIGN KEY ("gsPersonelId") REFERENCES "GroundServicesPersonel"(id)
 );
 
 
 
 --AIRPORT
 
-CREATE TABLE Airport
+CREATE TABLE "Airport"
 (
-	airport_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	AirportManagement_id INT NOT NULL,
-	airport_name VARCHAR(50) NOT NULL UNIQUE,
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	"AirportManagementId" INT NOT NULL,
+	name VARCHAR(50) NOT NULL UNIQUE,
 	city VARCHAR(50) NOT NULL,
 	country VARCHAR(3) NOT NULL,
-	plane_capacity INT NOT NULL,
-	year_built INT DEFAULT 2000,
-	check(year_built >= 1800 and year_built <= 2100),
-	check(plane_capacity >= 0 ),
-	CONSTRAINT fk_AirportManagement_id FOREIGN KEY (AirportManagement_id) REFERENCES AirportManagement(AirportManagement_id)
+	"planeCapacity" INT NOT NULL,
+	"yearBuilt" INT DEFAULT 2000,
+	check("yearBuilt" >= 1800 and "yearBuilt" <= 2100),
+	check("planeCapacity" >= 0 ),
+	CONSTRAINT fk_AirportManagement_id FOREIGN KEY ("AirportManagementId") REFERENCES "AirportManagement"(id)
 );
 
 
-CREATE TABLE Route
+CREATE TABLE "Route"
 (
-	route_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	starting_airport_id INT NOT NULL,
-	final_airport_id INT NOT NULL,
-	check(starting_airport_id != final_airport_id),
-	UNIQUE (starting_airport_id, final_airport_id),
-	CONSTRAINT fk_starting_airport_id FOREIGN KEY (starting_airport_id) REFERENCES AirporT(airport_id),
-	CONSTRAINT fk_final_airport_id FOREIGN KEY (final_airport_id) REFERENCES AirporT(airport_id)
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	"startingAirportId" INT NOT NULL,
+	"finalAirportId" INT NOT NULL,
+	check("startingAirportId" != "finalAirportId"),
+	UNIQUE ("startingAirportId", "finalAirportId"),
+	CONSTRAINT fk_starting_airport_id FOREIGN KEY ("startingAirportId") REFERENCES "Airport"(id),
+	CONSTRAINT fk_final_airport_id FOREIGN KEY ("finalAirportId") REFERENCES "Airport"(id)
 );
 
 
-CREATE TABLE Flight
+CREATE TABLE "Flight"
 (
-	flight_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	plane_id INT NOT NULL,
-	CCrew_id INT NOT NULL,
-	GSCrew_id INT NOT NULL,
-	route_id INT NOT NULL,
-	flight_date DATE NOT NULL DEFAULT CURRENT_DATE,
-	UNIQUE(plane_id,CCrew_id,GSCrew_id,route_id,flight_date),
-	CONSTRAINT fk_plane FOREIGN KEY (plane_id) REFERENCES Plane(plane_id),
-	CONSTRAINT fk_CCrew FOREIGN KEY (CCrew_id) REFERENCES CabinCrew(CCrew_id),
-	CONSTRAINT fk_GSCre FOREIGN KEY (GSCrew_id) REFERENCES GroundServicesCrew(GSCrew_id),
-	CONSTRAINT fk_route FOREIGN KEY (route_id) REFERENCES Route(route_id)
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	"planeId" INT NOT NULL,
+	"CCrewId" INT NOT NULL,
+	"GSCrewId" INT NOT NULL,
+	"routeId" INT NOT NULL,
+	"flightDate" DATE NOT NULL DEFAULT CURRENT_DATE,
+	UNIQUE("planeId","CCrewId","GSCrewId","routeId","flightDate"),
+	CONSTRAINT fk_plane FOREIGN KEY ("planeId") REFERENCES "Plane"(id),
+	CONSTRAINT fk_CCrew FOREIGN KEY ("CCrewId") REFERENCES "CabinCrew"(id),
+	CONSTRAINT fk_GSCre FOREIGN KEY ("GSCrewId") REFERENCES "GroundServicesCrew"(id),
+	CONSTRAINT fk_route FOREIGN KEY ("routeId") REFERENCES "Route"(id)
 );
 
 
 --ORDER
 
-CREATE TABLE Payment
+CREATE TABLE "Payment"
 (
-	payment_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	amount INT NOT NULL,
-	payment_type VARCHAR(4) NOT NULL,
-	check(payment_type = 'CASH' OR payment_type = 'CARD'),
-	points_earned INT NOT NULL DEFAULT 0
+	"paymentType" VARCHAR(4) NOT NULL,
+	check("paymentType" = 'CASH' OR "paymentType" = 'CARD'),
+	"pointsEarned" INT NOT NULL DEFAULT 0
 );
 
-CREATE TABLE Trip
+CREATE TABLE "Trip"
 (
-	trip_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	flight_id INT NOT NULL,
-	customer_id INT NOT NULL,
-	payment_id INT NOT NULL,
-	trip_rating INT NOT NULL,
-	check(trip_rating >= 0 and trip_rating <= 5),
-	CONSTRAINT fk_fligt FOREIGN KEY (flight_id) REFERENCES Flight(flight_id),
-	CONSTRAINT fk_customer FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
-	CONSTRAINT fk_payment FOREIGN KEY (payment_id) REFERENCES Payment(payment_id)
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	"flightId" INT NOT NULL,
+	"customerId" INT NOT NULL,
+	"paymentId" INT NOT NULL,
+	"tripRating" INT NOT NULL,
+	check("tripRating" >= 0 and "tripRating" <= 5),
+	CONSTRAINT fk_fligt FOREIGN KEY ("flightId") REFERENCES "Flight"(id),
+	CONSTRAINT fk_customer FOREIGN KEY ("customerId") REFERENCES "Customer"(id),
+	CONSTRAINT fk_payment FOREIGN KEY ("paymentId") REFERENCES "Payment"(id)
 	
 );
 
