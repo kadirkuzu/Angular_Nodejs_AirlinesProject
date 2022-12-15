@@ -75,7 +75,6 @@ CREATE TABLE "Person"
 CREATE TABLE "Customer"
 (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	password VARCHAR(50) NOT NULL,
 	"customerRank" INT NOT NULL DEFAULT 0,
 	check("customerRank" >= 0 and "customerRank" <= 10)
 ) INHERITS ("Person");
@@ -83,7 +82,8 @@ CREATE TABLE "Customer"
 
 CREATE TABLE "Employee"
 (
-	salary INT NOT NULL
+	salary INT NOT NULL,
+	password VARCHAR(50) NOT NULL
 ) INHERITS ("Person");
 
 CREATE TABLE "Pilot"
