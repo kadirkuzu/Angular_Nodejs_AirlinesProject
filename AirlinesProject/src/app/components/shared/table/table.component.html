@@ -10,6 +10,6 @@
 </table>
 <ng-template #notFound>
   <div  class="alert alert-secondary  mt-3" role="alert">
-    {{tableName}} could not be found. You can add <span routerLink="/add-airport" class="router-text">here</span>
+    {{tableName}} could not be found. You can add <span [routerLink]="'/add-'+typeName" class="router-text">here</span>
   </div>
 </ng-template>

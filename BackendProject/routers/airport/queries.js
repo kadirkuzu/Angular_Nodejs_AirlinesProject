@@ -1,4 +1,4 @@
-let name = "airports"
+let name = `"Airports"`
 export const getAll = `SELECT * FROM ${name} ORDER BY id ASC`
 export const getById = `SELECT * FROM ${name} WHERE id = $1`
 export const add = `INSERT INTO ${name} (name,code,city,country) VALUES ($1,$2,$3,$4) RETURNING *`
