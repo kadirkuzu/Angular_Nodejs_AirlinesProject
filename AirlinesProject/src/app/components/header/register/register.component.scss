@@ -1,5 +1,5 @@
 .login{
-    margin: 50px 500px 50px 500px;
+    margin: 50px 0 50px 0;
 }
 
 #password {
@@ -14,4 +14,13 @@
     right: 10px;
     top: 6px;
     cursor: pointer;
+}
+
+.nationality{
+    ::ng-deep .mat-form-field-infix{
+        height: 30px !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }

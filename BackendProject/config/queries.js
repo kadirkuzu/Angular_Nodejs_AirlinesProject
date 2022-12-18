@@ -11,10 +11,9 @@ CREATE TABLE "Companies"
 	city VARCHAR(50) DEFAULT 'Istanbul',
 	"contactName" VARCHAR(50),
 	"contactNumber" VARCHAR(12)
-	
 );
 
-CREATE TABLE "Manufacturer"
+CREATE TABLE "Manufacturers"
 (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
 ) INHERITS ("Companies");
@@ -43,7 +42,7 @@ CREATE TABLE "PlaneModels"
 	"manufacturerId" INT NOT NULL,
 	"modelName" VARCHAR(50) UNIQUE,
 	capacity INT,
-	CONSTRAINT fk_manufacturer FOREIGN KEY ("manufacturerId") REFERENCES "Manufacturer"(id)
+	CONSTRAINT fk_manufacturer FOREIGN KEY ("manufacturerId") REFERENCES "Manufacturers"(id)
 );
 
 
@@ -68,8 +67,8 @@ CREATE TABLE "Persons"
 	name VARCHAR(50) NOT NULL,
 	phone VARCHAR(50) NOT NULL,
 	nationality VARCHAR(3) NOT NULL,
-	dob INT NOT NULL,
-	check(dob >= 1700 and dob <= 2100)
+	dob DATE NOT NULL,
+	email VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE "Customers"
@@ -79,10 +78,10 @@ CREATE TABLE "Customers"
 	check("customerRank" >= 0 and "customerRank" <= 10)
 ) INHERITS ("Persons");
 
-CREATE TABLE "Brokers"
+CREATE TABLE "Users"
 (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	password VARCHAR(50) NOT NULL
+	password TEXT NOT NULL
 ) INHERITS ("Persons");
 
 
@@ -156,15 +155,16 @@ CREATE TABLE "GroundServicesCrewPersonels"
 CREATE TABLE "Airports"
 (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	"AirportManagementId" INT NOT NULL,
+	"airportManagementId" INT NOT NULL,
 	name VARCHAR(50) NOT NULL UNIQUE,
+	code VARCHAR(50) NOT NULL UNIQUE,
 	city VARCHAR(50) NOT NULL,
 	country VARCHAR(3) NOT NULL,
 	"planeCapacity" INT NOT NULL,
 	"yearBuilt" INT DEFAULT 2000,
 	check("yearBuilt" >= 1800 and "yearBuilt" <= 2100),
 	check("planeCapacity" >= 0 ),
-	CONSTRAINT fk_AirportManagement_id FOREIGN KEY ("AirportManagementId") REFERENCES "AirportManagements"(id)
+	CONSTRAINT fk_AirportManagement_id FOREIGN KEY ("airportManagementId") REFERENCES "AirportManagements"(id)
 );
 
 

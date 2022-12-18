@@ -18,14 +18,14 @@ export const getById = (req,res) =>{
 }
 
 export const add = (req,res) =>{
-    const {name,code,city,country} = req.body
+    const {name,code,city,country,airportManagementId,planeCapacity,yearBuilt} = req.body
     pool.query(queries.checkAirportExist,[code],(error,results)=>{
         if(error) res.status(404).json({message:error.message})
         else if(results.rows.length) res.status(404).json({message:"Airport already exists."})
         else {
-            pool.query(queries.add,[name,code,city,country],(error,results)=>{
+            pool.query(queries.add,[name,code,city,country,airportManagementId,planeCapacity,yearBuilt],(error,results)=>{
                 if(error) res.status(404).json({message:error.message})
-                res.status(201).json(results.rows)
+                else res.status(201).json(results.rows)
             })
         }
     })

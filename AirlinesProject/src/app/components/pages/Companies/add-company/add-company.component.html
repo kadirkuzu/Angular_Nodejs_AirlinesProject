@@ -1,0 +1,52 @@
+<div class="row justify-content-center w-100">
+    <div class="main col-11 col-xs-11 col-sm-11 col-md-11 col-lg-8 col-xl-8">
+        <form [formGroup]="addCompanyForm">
+            <div class="mb-3">
+                <label for="designerName" class="form-label">Company Type</label>
+                <ng-select formControlName="companyType" placeholder="Select management" [clearable]="false">
+                    <ng-option *ngFor="let company of companyList" [value]="company.value">
+                        {{company.name}}
+                    </ng-option>
+                </ng-select>
+            </div>
+            <div class="mb-3">
+                <label for="designerName" class="form-label">Name</label>
+                <div>
+                    <input [ngClass]="{ 'is-invalid': name?.invalid   && (name?.dirty || name?.touched)}" formControlName="name"
+                        type="text" class="form-control" id="designerName" placeholder="Name">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="city" class="form-label">City</label>
+                <div>
+                    <input [ngClass]="{ 'is-invalid': city?.invalid   && (city?.dirty || city?.touched)}" formControlName="city"
+                        type="text" class="form-control" id="city" placeholder="City">
+                </div>
+            </div>
+            <div class="mb-2">
+                <label for="country" class="form-label">Country</label>
+                <div>
+                    <mat-select-country class="nationality" autocomplete="no" [value]="defaultValue" appearance="outline" (onCountrySelected)="onCountrySelected($event)" ></mat-select-country>      
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="contactName" class="form-label">Contact Name</label>
+                <div>
+                    <input [ngClass]="{ 'is-invalid': contactName?.invalid   && (contactName?.dirty || contactName?.touched)}" formControlName="contactName"
+                        type="text" class="form-control" id="contactName" placeholder="Contact Name">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="contactNumber" class="form-label">Contact Number</label>
+                <div>
+                    <input [ngClass]="{ 'is-invalid': contactNumber?.invalid   && (contactNumber?.dirty || contactNumber?.touched)}" formControlName="contactNumber"
+                        type="text" class="form-control" id="contactNumber" placeholder="Phone" prefix="+90 " mask="(000) 000 0000">
+                </div>
+            </div>
+            <div class="text-end">
+                <button class="btn btn-danger" style="margin-right: 20px;" (click)="discard()">Discard changes</button>
+                <button class="btn btn-primary" [disabled]="addCompanyForm.invalid" (click)="add()">Add</button>
+            </div>
+        </form>
+    </div>
+</div>

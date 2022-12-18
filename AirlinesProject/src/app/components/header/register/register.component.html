@@ -1,41 +1,60 @@
-<div class="main login">
-    <form [formGroup]="registerForm">
-        <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <div>
-                <input [ngClass]="{ 'is-invalid': email?.invalid   && (email?.dirty || email?.touched)}" formControlName="email"
-                    type="text" class="form-control" id="email" placeholder="Email">
-            </div>
-        </div>
-        <div class="mb-3">
-            <label for="fullName" class="form-label">Full Name</label>
-            <div>
-                <input [ngClass]="{ 'is-invalid': fullName?.invalid   && (fullName?.dirty || fullName?.touched)}" formControlName="fullName"
-                    type="text" class="form-control" id="fullName" placeholder="Full name">
-            </div>
-        </div>
-        <div class="mb-3">
-            <label for="age" class="form-label">Age</label>
-            <div>
-                <input [ngClass]="{ 'is-invalid': age?.invalid   && (age?.dirty || age?.touched)}" formControlName="age"
-                    type="number" class="form-control" id="age" placeholder="Age">
-            </div>
-        </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <div class="w-100 position-relative">
-                <input #password1 [ngClass]="{ 'is-invalid': password?.invalid   && (password?.dirty || password?.touched)}" formControlName="password"
-                    type="password" class="form-control" id="password" placeholder="Password">
-                <div class="password-button" (click)="password1.type=='text'?password1.type='password':password1.type='text'">
-                    {{password1.type=='text'?'Hide':'Show'}}
+<div class="row justify-content-center w-100">
+    <div class="main login col-11 col-xs-11 col-sm-11 col-md-6 col-lg-4 col-xl-4">
+        <form [formGroup]="registerForm">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <div>
+                    <input [ngClass]="{ 'is-invalid': email?.invalid   && (email?.dirty || email?.touched)}" formControlName="email"
+                        type="text" class="form-control" id="email" placeholder="Email">
                 </div>
             </div>
+            <div class="mb-3">
+                <label for="fullName" class="form-label">Full Name</label>
+                <div>
+                    <input [ngClass]="{ 'is-invalid': name?.invalid   && (name?.dirty || name?.touched)}" formControlName="name"
+                        type="text" class="form-control" id="fullName" placeholder="Full name">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone</label>
+                <div>
+                    <input [ngClass]="{ 'is-invalid': phone?.invalid   && (phone?.dirty || phone?.touched)}" formControlName="phone"
+                        type="text" class="form-control" id="phone" placeholder="Phone" prefix="+90 " mask="(000) 000 0000">
+                </div>
+            </div>
+            <div class="mb-2">
+                <label for="nationality" class="form-label">Nationality</label>
+                <div>
+                    <mat-select-country class="nationality" autocomplete="no" [value]="defaultValue" appearance="outline" (onCountrySelected)="onCountrySelected($event)" ></mat-select-country>      
+                </div>
+            </div>
+            <div class="mb-2">
+                <label for="age" class="form-label">Date Of Birth</label>
+                <div>
+                    <mat-form-field class="w-100" [floatLabel]="'never'">
+                        <mat-label>Date Of Birth</mat-label>
+                        <input formControlName="dob" matInput [matDatepicker]="picker">
+                        <mat-datepicker-toggle matSuffix matPrefix  [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <div class="w-100 position-relative">
+                    <input #password1 [ngClass]="{ 'is-invalid': password?.invalid   && (password?.dirty || password?.touched)}" formControlName="password"
+                        type="password" class="form-control" id="password" placeholder="Password">
+                    <div class="password-button" (click)="password1.type=='text'?password1.type='password':password1.type='text'">
+                        {{password1.type=='text'?'Hide':'Show'}}
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="text-center">
+            <button class="btn btn-primary w-100" [disabled]="registerForm.invalid" (click)="register()">Create Account</button>
         </div>
-    </form>
-    <div class="text-center">
-        <button class="btn btn-primary w-100" [disabled]="registerForm.invalid" (click)="register()">Create Account</button>
-    </div>
-    <div class="text-end mt-3">
-        Already have an account?  <span class="router-text" routerLink="/login">Login</span>
+        <div class="text-end mt-3">
+            Already have an account?  <span class="router-text" routerLink="/login">Login</span>
+        </div>
     </div>
 </div>

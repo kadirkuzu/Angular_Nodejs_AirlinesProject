@@ -6,6 +6,8 @@ import { AddAirportComponent } from "./add-airport/add-airport.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { CommonModule } from "@angular/common";
+import { NgxMaskModule } from "ngx-mask";
+import { MatSelectCountryModule } from "@angular-material-extensions/select-country";
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { CommonModule } from "@angular/common";
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
-    CommonModule
+    CommonModule,
+    NgxMaskModule,
+    MatSelectCountryModule.forRoot('en'),
 
   ],
   exports: [

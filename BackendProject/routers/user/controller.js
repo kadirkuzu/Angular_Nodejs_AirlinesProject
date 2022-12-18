@@ -18,15 +18,20 @@ export const getById = (req,res) =>{
 }
 
 export const register = (req,res) =>{
-    const {fullName,email,age,password} = req.body
+    const {email,name,phone,dob,password,nationality} = req.body
     pool.query(queries.checkEmailExist,[email],(error,results)=>{
         if(error) res.status(404).json({message:error.message})
         else if(results.rows.length) res.status(404).json({message:"Email already exists."})
         else {
-            pool.query(queries.register,[fullName,email,age,password],(error,results)=>{
+            pool.query(queries.checkPhoneExist,[phone],(error,results)=>{
                 if(error) res.status(404).json({message:error.message})
-                else res.status(201).json({fullName,email,age})
+                else if(results.rows.length) res.status(404).json({message:"Phone already exists."})
+                else pool.query(queries.register,[email,name,phone,nationality,dob,password],(error,results)=>{
+                    if(error) res.status(404).json({message:error.message})
+                    else res.status(201).json({user:results.rows[0]})
+                })
             })
+
         }
     })
 }

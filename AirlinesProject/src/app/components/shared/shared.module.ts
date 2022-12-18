@@ -5,10 +5,12 @@ import { RouterModule } from "@angular/router";
 import { MatTableModule } from '@angular/material/table';
 import { TableComponent } from './table/table.component' 
 import { NgSelectModule } from "@ng-select/ng-select";
+import { DeleteModalComponent } from './table/delete-modal/delete-modal.component';
 
 @NgModule({
   declarations: [
-    TableComponent
+    TableComponent,
+    DeleteModalComponent
   ],
   imports: [
     CommonModule,

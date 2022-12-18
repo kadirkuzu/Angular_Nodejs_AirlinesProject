@@ -10,9 +10,12 @@ export class TableComponent implements OnInit {
   @Input() columns:any = []
   @Input() tableName!:string
   @Input() typeName!:string
+  @Input() canDelete!:boolean
+
   constructor() { }
 
   ngOnInit(): void {
+    if(this.canDelete) this.columns.push('delete')
   }
 
 }
