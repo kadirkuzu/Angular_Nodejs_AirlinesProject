@@ -1,0 +1,54 @@
+<div class="row justify-content-center w-100">
+    <div [ngClass]="!aircraft ? 'main col-11 col-xs-11 col-sm-11 col-md-11 col-lg-8 col-xl-8' : ''">
+        <form [formGroup]="addAircraftForm">
+            <div class="mb-3">
+                <label class="form-label">Plane Owner</label>
+                <ng-select formControlName="ownerId" placeholder="Select owner">
+                    <ng-option *ngFor="let owner of ownerList" [value]="owner.id">
+                        {{owner.name+"("+owner.contactName+")"}}
+                    </ng-option>
+                    <ng-template ng-notfound-tmp>
+                        <div class="ng-option disabled">
+                            No any owner found . <span class="router-text" (click)="navigate('/add-company')">Click to add owner</span>
+                        </div>
+                      </ng-template>
+                </ng-select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Model</label>
+                <ng-select (open)="getModels()" formControlName="modelId" placeholder="Select model">
+                    <ng-option *ngFor="let model of modelList" [value]="model.id">
+                        {{model.modelName+" (capacity="+model.capacity+")"}}
+                    </ng-option>
+                    <ng-template ng-notfound-tmp>
+                        <div class="ng-option disabled">
+                            No any model found . <span class="router-text" data-bs-toggle="modal" data-bs-target="#addAircraftModal" >Click to add aircraft model</span>
+                        </div>
+                      </ng-template>
+                </ng-select>
+            </div>
+            <div class="mb-3">
+                <label for="aircraftName" class="form-label">Name</label>
+                <div>
+                    <input [ngClass]="{ 'is-invalid': aircraftName?.invalid   && (aircraftName?.dirty || aircraftName?.touched)}" formControlName="aircraftName"
+                        type="text" class="form-control" id="aircraftName" placeholder="Name">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="yearBought" class="form-label">Year Build</label>
+                <div>
+                    <input [ngClass]="{ 'is-invalid': yearBought?.invalid   && (yearBought?.dirty || yearBought?.touched)}" formControlName="yearBought"
+                        type="text" class="form-control" id="yearBought" placeholder="Year Build" mask="0000">
+                </div>
+            </div>
+            <div class="text-end" *ngIf="!aircraft">
+                <button class="btn btn-danger" style="margin-right: 20px;" (click)="discard()">Discard changes</button>
+                <button class="btn btn-primary" [disabled]="addAircraftForm.invalid" (click)="add()">Add</button>
+            </div>
+            <div class="text-end" *ngIf="aircraft">
+                <button style="margin-right: 20px;" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button data-bs-dismiss="modal" class="btn btn-primary" [disabled]="addAircraftForm.invalid" (click)="update()">Update</button>
+            </div>
+        </form>
+    </div>
+</div>

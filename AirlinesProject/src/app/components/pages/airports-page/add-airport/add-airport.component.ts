@@ -21,7 +21,6 @@ export class AddAirportComponent implements OnInit {
   constructor(private airportService:AirportService,private toastr: ToastrService,private companyService:CompanyService,private router:Router) { }
 
   addAirportForm = new FormGroup({
-    id: new FormControl ,
     name: new FormControl('', [Validators.required]),
     code: new FormControl('', [Validators.required]),
     city: new FormControl('',[Validators.required]),
@@ -87,7 +86,7 @@ export class AddAirportComponent implements OnInit {
   }
 
   addManagement(){
-    this.router.navigate(["/add-airport-management"])
+    this.router.navigate(["/add-company"])
   }
 
   onCountrySelected(event:any){

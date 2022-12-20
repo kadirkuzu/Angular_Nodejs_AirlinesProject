@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Aircraft } from 'src/app/models/aircraft';
 import { AircraftService } from 'src/app/services/aircraft.service';
 
 @Component({
@@ -8,10 +9,22 @@ import { AircraftService } from 'src/app/services/aircraft.service';
 })
 export class AircraftsPageComponent implements OnInit {
 
+  aircrafts:Aircraft[] = []
+  displayedColumns: string[] = ['aircraftName', 'yearBought','ownerName','modelName'];
+  isLoading:boolean = true
+
   constructor(private aircraftService:AircraftService) { }
 
+
   ngOnInit(): void {
-    
+    this.getAircrafts()
+  }
+
+  getAircrafts(){
+    this.aircraftService.getAll().subscribe(data=>{  
+      this.aircrafts = data
+      this.isLoading = false
+    })
   }
 
 }

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
-import { AircraftsPageComponent } from './components/pages/aircrafts-page/aircrafts-page.component';
+import { AircraftsPageComponent } from './components/pages/Aircrafts/aircrafts-page/aircrafts-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { HeaderComponent } from './components/header/header/header.component';
@@ -27,6 +27,23 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { PlaneOwnersPageComponent } from './components/pages/Companies/plane-owners-page/plane-owners-page.component';
 import { GroundServicesPageComponent } from './components/pages/Companies/ground-services-page/ground-services-page.component';
 import { CompanyDetailComponent } from './components/pages/Companies/company-detail/company-detail.component';
+import { PilotsPageComponent } from './components/pages/Employees/pilots-page/pilots-page.component';
+import { CabinPersonelsPageComponent } from './components/pages/Employees/./cabin-personels-page/cabin-personels-page.component';
+import { CabinCrewsPageComponent } from './components/pages/Employees/./cabin-crews-page/cabin-crews-page.component';
+import { CabinCrewPersonelsPageComponent } from './components/pages/Employees/cabin-crew-personels-page/cabin-crew-personels-page.component';
+import { GroundServicesChiefsPageComponent } from './components/pages/Employees/ground-services-chiefs-page/ground-services-chiefs-page.component';
+import { GroundServicesCrewsPageComponent } from './components/pages/Employees/./ground-services-crews-page/ground-services-crews-page.component';
+import { GroundServicesCrewPersonelsPageComponent } from './components/pages/Employees/./ground-services-crew-personels-page/ground-services-crew-personels-page.component';
+import { GroundServicesPersonelsPageComponent } from './components/pages/Employees/ground-services-personels-page/ground-services-personels-page.component';
+import { CustomersPageComponent } from './components/pages/Customers/customers-page/customers-page.component';
+import { AddCustomerComponent } from './components/pages/Customers/add-customer/add-customer.component';
+import { TripsComponent } from './components/pages/Customers/trips/trips.component';
+import { PaymentsComponent } from './components/pages/Customers/payments/payments.component';
+import { FlightsComponent } from './components/pages/Customers/flights/flights.component';
+import { RoutesPageComponent } from './components/pages/Customers/routes-page/routes-page.component';
+import { CustomerDetailComponent } from './components/pages/Customers/customer-detail/customer-detail.component';
+import { AddAircraftComponent } from './components/pages/Aircrafts/add-aircraft/add-aircraft.component';
+import { AddAircraftModelComponent } from './components/pages/Aircrafts/add-aircraft-model/add-aircraft-model.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {
   showMaskTyped: false,
@@ -46,7 +63,25 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {
     AddCompanyComponent,
     PlaneOwnersPageComponent,
     GroundServicesPageComponent,
-    CompanyDetailComponent
+    CompanyDetailComponent,
+    PilotsPageComponent,
+    CabinPersonelsPageComponent,
+    CabinCrewsPageComponent,
+    CabinCrewPersonelsPageComponent,
+    GroundServicesChiefsPageComponent,
+    GroundServicesPersonelsPageComponent,
+    GroundServicesCrewsPageComponent,
+    GroundServicesCrewPersonelsPageComponent,
+    GroundServicesPersonelsPageComponent,
+    CustomersPageComponent,
+    AddCustomerComponent,
+    TripsComponent,
+    PaymentsComponent,
+    FlightsComponent,
+    RoutesPageComponent,
+    CustomerDetailComponent,
+    AddAircraftComponent,
+    AddAircraftModelComponent,
   ],
   imports: [
     BrowserModule,

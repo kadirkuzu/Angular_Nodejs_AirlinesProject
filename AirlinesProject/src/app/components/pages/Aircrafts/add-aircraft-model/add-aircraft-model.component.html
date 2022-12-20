@@ -1,0 +1,48 @@
+<div class="modal fade" id="addAircraftModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add Aircraft Model</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div>
+                <form [formGroup]="addAircraftModelForm">
+                    <div class="mb-3">
+                        <label class="form-label">Manufacturer</label>
+                        <ng-select formControlName="manufacturerId" placeholder="Select manufacturer">
+                            <ng-option *ngFor="let manufacturer of manufacturerList" [value]="manufacturer.id">
+                                {{manufacturer.name+"("+manufacturer.contactName+")"}}
+                            </ng-option>
+                            <ng-template ng-notfound-tmp>
+                                <div class="ng-option disabled">
+                                    No any manufacturer found . <span class="router-text" data-bs-dismiss="modal" (click)="navigate('/add-company')">Click to add manufacturer</span>
+                                </div>
+                              </ng-template>
+                        </ng-select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="modelName" class="form-label">Name</label>
+                        <div>
+                            <input [ngClass]="{ 'is-invalid': modelName?.invalid   && (modelName?.dirty || modelName?.touched)}" formControlName="modelName"
+                                type="text" class="form-control" id="modelName" placeholder="Name">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="capacity" class="form-label">Capacity</label>
+                        <div>
+                            <input [ngClass]="{ 'is-invalid': capacity?.invalid   && (capacity?.dirty || capacity?.touched)}" formControlName="capacity"
+                                type="number" class="form-control" id="capacity" placeholder="Capacity">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger" style="margin-right: 20px;" data-bs-dismiss="modal" (click)="discard()">Close</button>
+            <button class="btn btn-primary" data-bs-dismiss="modal" [disabled]="addAircraftModelForm.invalid" (click)="add()">Add</button>
+        </div>
+      </div>
+    </div>
+</div>
+

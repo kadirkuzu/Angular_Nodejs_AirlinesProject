@@ -9,11 +9,22 @@
             <li class="nav-item active">
               <div class="nav-link c-pointer" routerLink="/home">Home</div>
             </li>
-            <li class="nav-item">
-              <div class="nav-link c-pointer" routerLink="/airports">Airports</div>
+            <li class="nav-item dropdown">
+              <span class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Airports</span>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" routerLink="/airports">Airports</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" routerLink="/add-airport">Add Airport</a></li>
+              </ul>
             </li>
-            <li class="nav-item">
-              <div class="nav-link c-pointer" routerLink="/aircrafts">Aircrafts</div>
+            <li class="nav-item dropdown">
+              <span class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Aircrafts</span>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" routerLink="/aircrafts">Aircrafts</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" routerLink="/add-aircraft">Add Aircraft</a></li>
+                <li><span class="dropdown-item c-pointer" data-bs-toggle="modal" data-bs-target="#addAircraftModal" >Add Aircraft Model</span></li>
+              </ul>
             </li>
             <li class="nav-item dropdown">
               <span class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Companies</span>
@@ -24,6 +35,29 @@
                 <li><a class="dropdown-item" routerLink="/companies/ground-services">Ground Services</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" routerLink="/add-company">Add Company</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <span class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Employees</span>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" routerLink="/employees/pilots">Pilots</a></li>
+                <li><a class="dropdown-item" routerLink="/employees/cabin-personels">Cabin Personels</a></li>
+                <li><a class="dropdown-item" routerLink="/employees/ground-services-chiefs">Ground Services Chiefs</a></li>
+                <li><a class="dropdown-item" routerLink="/employees/ground-services">Ground Services</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" routerLink="/add-company">Add Company</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <span class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Customers</span>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" routerLink="/customers">Customers</a></li>
+                <li><a class="dropdown-item" routerLink="/customers/flights">Flights</a></li>
+                <li><a class="dropdown-item" routerLink="/customers/payments">Payments</a></li>
+                <li><a class="dropdown-item" routerLink="/customers/routes">Routes</a></li>
+                <li><a class="dropdown-item" routerLink="/customers/trips">Trips</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" routerLink="/add-customer">Add Customer</a></li>
               </ul>
             </li>
           </ul>
