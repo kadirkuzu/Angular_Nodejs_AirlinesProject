@@ -1,5 +1,5 @@
 <div class="row justify-content-center w-100">
-    <div class="main col-11 col-xs-11 col-sm-11 col-md-11 col-lg-8 col-xl-8">
+    <div [ngClass]="!airport ? 'main col-11 col-xs-11 col-sm-11 col-md-11 col-lg-8 col-xl-8' : ''">
         <form [formGroup]="addAirportForm">
             <div class="mb-3">
                 <label for="designerName" class="form-label">Airport Management</label>
@@ -55,10 +55,15 @@
                         type="text" class="form-control" id="yearBuilt" placeholder="Year Build" mask="0000">
                 </div>
             </div>
-            <div class="text-end">
+            <div class="text-end" *ngIf="!airport">
                 <button class="btn btn-danger" style="margin-right: 20px;" (click)="discard()">Discard changes</button>
                 <button class="btn btn-primary" [disabled]="addAirportForm.invalid" (click)="add()">Add</button>
+            </div>
+            <div class="text-end" *ngIf="airport">
+                <button style="margin-right: 20px;" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button data-bs-dismiss="modal" class="btn btn-primary" [disabled]="addAirportForm.invalid" (click)="update()">Update</button>
             </div>
         </form>
     </div>
 </div>
+

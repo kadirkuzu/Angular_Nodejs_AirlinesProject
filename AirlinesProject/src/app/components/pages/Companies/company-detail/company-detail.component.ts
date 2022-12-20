@@ -15,6 +15,29 @@ export class CompanyDetailComponent implements OnInit {
   company?:Company
   companyType?:string
 
+  typeArray:{name:string,value:string}[] = [
+    {
+      name:"Name",
+      value:"name"
+    },
+    {
+      name:"City",
+      value:"city"
+    },
+    {
+      name:"Country",
+      value:"country"
+    },
+    {
+      name:"Contact Name",
+      value:"contactName"
+    },
+    {
+      name:"Contact Number",
+      value:"contactNumber"
+    },
+  ]
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.companyType = this.getCompanyType(params['companyType'])

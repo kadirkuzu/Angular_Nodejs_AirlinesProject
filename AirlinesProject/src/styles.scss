@@ -23,3 +23,7 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button {
 .c-pointer{
   cursor:pointer
 }
+
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+  z-index: 99999 !important;
+}

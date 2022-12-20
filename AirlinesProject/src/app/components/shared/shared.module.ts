@@ -6,11 +6,13 @@ import { MatTableModule } from '@angular/material/table';
 import { TableComponent } from './table/table.component' 
 import { NgSelectModule } from "@ng-select/ng-select";
 import { DeleteModalComponent } from './table/delete-modal/delete-modal.component';
+import { DetailComponent } from './detail/detail.component';
 
 @NgModule({
   declarations: [
     TableComponent,
-    DeleteModalComponent
+    DeleteModalComponent,
+    DetailComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { DeleteModalComponent } from './table/delete-modal/delete-modal.componen
   ],
   exports: [
     MatTableModule,
-    TableComponent
+    TableComponent,
+    DetailComponent
   ]
 })
 export class SharedModule { }

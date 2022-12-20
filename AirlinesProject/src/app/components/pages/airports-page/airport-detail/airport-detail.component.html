@@ -1,0 +1,2 @@
+<app-detail *ngIf="airport" [element]="airport" [typeArray]="typeArray" [modalId]="'update-airport'+airport.id+'modal'"></app-detail>
+<app-update-airport *ngIf="airport" [id]="airport.id" [airport]="airport" (updatedAirport)="updateAirport($event)"></app-update-airport>

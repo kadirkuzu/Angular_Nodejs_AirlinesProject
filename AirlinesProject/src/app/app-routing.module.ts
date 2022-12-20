@@ -4,6 +4,7 @@ import { LoginComponent } from './components/header/login/login.component';
 import { RegisterComponent } from './components/header/register/register.component';
 import { AircraftsPageComponent } from './components/pages/aircrafts-page/aircrafts-page.component';
 import { AddAirportComponent } from './components/pages/airports-page/add-airport/add-airport.component';
+import { AirportDetailComponent } from './components/pages/airports-page/airport-detail/airport-detail.component';
 import { AirportsPageComponent } from './components/pages/airports-page/airports-page.component';
 import { AddCompanyComponent } from './components/pages/Companies/add-company/add-company.component';
 import { AirportManagementsPageComponent } from './components/pages/Companies/airport-managements-page/airport-managements-page.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:'aircrafts',component:AircraftsPageComponent},
   {path:'airports',component:AirportsPageComponent},
   {path:'add-airport',component:AddAirportComponent},
+  {path:'airports/:id',component:AirportDetailComponent},
   {path:'companies/airport-managements',component:AirportManagementsPageComponent},
   {path:'companies/ground-services',component:GroundServicesPageComponent},
   {path:'companies/manufacturers',component:ManufecturersPageComponent},

@@ -46,7 +46,9 @@ export const update = (req,res) =>{
 }
 
 export const deleteOne = (req,res) =>{
-    const {id} = req.params
+    const {id,companyType} = req.params ;
+    console.log(companyType);
+    queries.changeName(companyType)
     pool.query(queries.deleteOne,[id],(error,results) => {
         if(error) res.status(404).json({message:error.message})
         else if(!results.rows.length) res.status(404).json({message:`${companyType} not found.`})

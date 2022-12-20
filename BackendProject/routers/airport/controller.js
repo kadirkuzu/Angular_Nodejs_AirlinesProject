@@ -33,7 +33,7 @@ export const add = (req,res) =>{
 
 export const update = (req,res) =>{
     const {id} = req.params
-    const values = [req.body.name,req.body.code,req.body.city,req.body.country,id]
+    const values = [req.body.name,req.body.code,req.body.city,req.body.country,req.body.planeCapacity,req.body.yearBuilt, req.body.airportManagementId,id]
     pool.query(queries.update,values,(error,results) => {
         if(error) res.status(404).json({message:error.message})
         else if(!results.rows.length) res.status(404).json({message:"Airport not found."})

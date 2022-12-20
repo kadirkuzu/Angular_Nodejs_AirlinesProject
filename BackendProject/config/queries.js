@@ -34,9 +34,9 @@ CREATE TABLE "GroundServices"
 ) INHERITS ("Companies");
 
 
---PLANE STUFF
+--AIRCRAFTS
 
-CREATE TABLE "PlaneModels"
+CREATE TABLE "AircraftModels"
 (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	"manufacturerId" INT NOT NULL,
@@ -46,16 +46,16 @@ CREATE TABLE "PlaneModels"
 );
 
 
-CREATE TABLE "Planes"
+CREATE TABLE "Aircrafts"
 (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	"ownerId" INT NOT NULL,
 	"modelId" INT NOT NULL,
-	"planeName" VARCHAR(50) NOT NULL,
+	"aircraftName" VARCHAR(50) NOT NULL,
 	"yearBought" int DEFAULT 2000,
 	check("yearBought" >= 1800 and "yearBought" <= 2100),
 	CONSTRAINT fk_owner FOREIGN KEY ("ownerId") REFERENCES "PlaneOwners"(id),
-	CONSTRAINT fk_model FOREIGN KEY ("modelId") REFERENCES "PlaneModels"(id)
+	CONSTRAINT fk_model FOREIGN KEY ("modelId") REFERENCES "AircraftModels"(id)
 );
 
 
@@ -183,13 +183,13 @@ CREATE TABLE "Routes"
 CREATE TABLE "Flights"
 (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	"planeId" INT NOT NULL,
+	"aircraftId" INT NOT NULL,
 	"CCrewId" INT NOT NULL,
 	"GSCrewId" INT NOT NULL,
 	"routeId" INT NOT NULL,
 	"flightDate" DATE NOT NULL DEFAULT CURRENT_DATE,
-	UNIQUE("planeId","CCrewId","GSCrewId","routeId","flightDate"),
-	CONSTRAINT fk_plane FOREIGN KEY ("planeId") REFERENCES "Planes"(id),
+	UNIQUE("aircraftId","CCrewId","GSCrewId","routeId","flightDate"),
+	CONSTRAINT fk_aircraft FOREIGN KEY ("aircraftId") REFERENCES "Aircrafts"(id),
 	CONSTRAINT fk_CCrew FOREIGN KEY ("CCrewId") REFERENCES "CabinCrews"(id),
 	CONSTRAINT fk_GSCre FOREIGN KEY ("GSCrewId") REFERENCES "GroundServicesCrews"(id),
 	CONSTRAINT fk_route FOREIGN KEY ("routeId") REFERENCES "Routes"(id)

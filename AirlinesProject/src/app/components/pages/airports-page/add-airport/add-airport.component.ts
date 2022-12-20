@@ -1,8 +1,9 @@
 import { Country } from '@angular-material-extensions/select-country';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Airport } from 'src/app/models/airport';
 import { Company } from 'src/app/models/company';
 import { AirportService } from 'src/app/services/airport.service';
 import { CompanyService } from 'src/app/services/company.service';
@@ -14,16 +15,20 @@ import { CompanyService } from 'src/app/services/company.service';
 })
 export class AddAirportComponent implements OnInit {
   managementList:Company[] = []
+  @Input() airport?:Airport
+  @Output() updatedAirport = new EventEmitter<Airport>();
+
   constructor(private airportService:AirportService,private toastr: ToastrService,private companyService:CompanyService,private router:Router) { }
 
   addAirportForm = new FormGroup({
+    id: new FormControl ,
     name: new FormControl('', [Validators.required]),
     code: new FormControl('', [Validators.required]),
     city: new FormControl('',[Validators.required]),
     country: new FormControl('TR',[Validators.required]),
-    airportManagementId: new FormControl(undefined,[Validators.required]),
-    planeCapacity: new FormControl(undefined,[Validators.required]),
-    yearBuilt: new FormControl(undefined,[Validators.required,Validators.pattern("^[0-9 ()+]+$"),Validators.max(2022)]),
+    airportManagementId: new FormControl(undefined as any,[Validators.required]),
+    planeCapacity: new FormControl(undefined as any,[Validators.required]),
+    yearBuilt: new FormControl(undefined as any,[Validators.required,Validators.pattern("^[0-9 ()+]+$"),Validators.max(2022)]),
   })
   get name() { return this.addAirportForm.get('name') }
   get code() { return this.addAirportForm.get('code') }
@@ -42,6 +47,9 @@ export class AddAirportComponent implements OnInit {
  };
  
   ngOnInit(): void {
+    if(this.airport){
+      this.addAirportForm.reset({...this.airport})
+    }
     this.companyService.getAll("AirportManagements").subscribe(data=>{
       this.managementList = data
     })
@@ -57,6 +65,20 @@ export class AddAirportComponent implements OnInit {
       next : (data)=>{
         this.toastr.success("Airport added successfully","Successfull")
         this.discard()
+      },
+      error:(e)=>{
+        this.toastr.error(e.error.message,"Error")
+      }
+    })
+  }
+
+  update(){
+    let airport:any = this.addAirportForm.value
+    this.airportService.update(airport,this.airport?.id!).subscribe({
+      next : (data)=>{
+        this.updatedAirport.emit(data.updatedAirport)
+        this.toastr.success("Airport updated successfully","Successfull")
+        this.addAirportForm.reset({...data.updatedAirport})
       },
       error:(e)=>{
         this.toastr.error(e.error.message,"Error")

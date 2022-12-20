@@ -8,11 +8,15 @@ import { NgSelectModule } from "@ng-select/ng-select";
 import { CommonModule } from "@angular/common";
 import { NgxMaskModule } from "ngx-mask";
 import { MatSelectCountryModule } from "@angular-material-extensions/select-country";
+import { AirportDetailComponent } from './airport-detail/airport-detail.component';
+import { UpdateAirportComponent } from './airport-detail/update-airport/update-airport.component';
 
 @NgModule({
   declarations: [
     AirportsPageComponent,
-    AddAirportComponent
+    AddAirportComponent,
+    AirportDetailComponent,
+    UpdateAirportComponent
   ],
   imports: [
     SharedModule,
