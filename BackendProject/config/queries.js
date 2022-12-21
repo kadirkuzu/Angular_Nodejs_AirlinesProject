@@ -100,6 +100,8 @@ CREATE TABLE "Pilots"
 CREATE TABLE "CabinPersonels"
 (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
+	"crewId" INT NOT NULL,
+	CONSTRAINT fk_"crewId" FOREIGN KEY ("crewId") REFERENCES "CabinCrews"(id)
 	
 ) INHERITS ("Employees");
 
@@ -110,16 +112,6 @@ CREATE TABLE "CabinCrews"
 	CONSTRAINT fk_pilot FOREIGN KEY ("pilotId") REFERENCES "Pilots"(id)
 );
 
-CREATE TABLE "CabinCrewPersonels"
-(
-	"ccrewId" INT NOT NULL,
-	"cabinPersonelId" INT NOT NULL,
-	PRIMARY KEY("ccrewId", "cabinPersonelId"),
-	CONSTRAINT "fk_CCrew" FOREIGN KEY ("ccrewId") REFERENCES "CabinCrews"(id),
-	CONSTRAINT fk_cabinpersonel FOREIGN KEY ("cabinPersonelId") REFERENCES "CabinPersonels"(id)
-);
-
-
 CREATE TABLE "GroundServicesChiefs"
 (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -129,7 +121,9 @@ CREATE TABLE "GroundServicesChiefs"
 
 CREATE TABLE "GroundServicesPersonels"
 (
-	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	"crewId" INT NOT NULL,
+	CONSTRAINT fk_"crewId" FOREIGN KEY ("crewId") REFERENCES "GroundServicesCrews"(id)
 ) INHERITS ("Employees");
 
 CREATE TABLE "GroundServicesCrews"
@@ -137,15 +131,6 @@ CREATE TABLE "GroundServicesCrews"
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	"gsCheifId" INT NOT NULL,
 	CONSTRAINT fk_chief FOREIGN KEY ("gsCheifId") REFERENCES "GroundServicesChiefs"(id)
-);
-
-CREATE TABLE "GroundServicesCrewPersonels"
-(
-	"gsCrewId" INT NOT NULL,
-	"gsPersonelId" INT NOT NULL,
-	PRIMARY KEY("gsCrewId", "gsPersonelId"),
-	CONSTRAINT fk_GSCrew FOREIGN KEY ("gsCrewId") REFERENCES "GroundServicesCrews"(id),
-	CONSTRAINT fk_GSCPersonel FOREIGN KEY ("gsPersonelId") REFERENCES "GroundServicesPersonels"(id)
 );
 
 
