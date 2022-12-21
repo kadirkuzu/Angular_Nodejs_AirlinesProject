@@ -5,9 +5,9 @@ export const getAll = `SELECT ${name}.id,${name}."ownerId",${name}."modelId",${n
  INNER JOIN ${owners} ON ${name}."ownerId"=${owners}.id
  INNER JOIN ${models} ON ${name}."modelId"=${models}.id`
  
-export const getById = `SELECT * FROM ${name} WHERE id = $1`
+export const getById = `${getAll} WHERE ${name}.id = $1 `
 export const add = `INSERT INTO ${name} ("ownerId","modelId","aircraftName","yearBought") VALUES ($1,$2,$3,$4) RETURNING *`
-export const update = `UPDATE ${name} SET name = $1 , code = $2 , city = $3 , country = $4,"planeCapacity" = $5, "yearBuilt" = $6 , "airportManagementId" = $7 where id = $8 RETURNING *`
+export const update = `UPDATE ${name} SET "ownerId" = $1 , "modelId" = $2 , "aircraftName" = $3 , "yearBought" = $4 where id = $5 RETURNING *`
 export const deleteOne = `DELETE FROM ${name} WHERE id = $1 RETURNING *`
 export const checkAircraftExist = `SELECT s FROM ${name} s WHERE s."aircraftName" = $1`
 

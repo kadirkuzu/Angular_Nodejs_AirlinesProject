@@ -27,3 +27,24 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button {
 .cdk-global-overlay-wrapper, .cdk-overlay-container {
   z-index: 99999 !important;
 }
+
+html, body {
+  min-height: 100% !important;
+  height: 100%;
+}
+
+.w-40{
+  width: 40%;
+}
+
+.w-45{
+  width: 45%;
+}
+
+.h-40{
+  height: 40%;
+}
+
+.h-45{
+  height: 45%;
+}

@@ -1,0 +1,2 @@
+<app-detail *ngIf="aircraft" [element]="aircraft" [typeArray]="typeArray" [modalId]="'update-aircraft'+aircraft.id+'modal'"></app-detail>
+<app-update-aircraft *ngIf="aircraft" [id]="aircraft.id" [aircraft]="aircraft" (updatedAircraft)="updateAircraft($event)"></app-update-aircraft>

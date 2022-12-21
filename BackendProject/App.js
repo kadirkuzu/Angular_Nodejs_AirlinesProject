@@ -5,6 +5,8 @@ import userRouter from './routers/user/router.js'
 import airportRouter from './routers/airport/router.js'
 import companiesRouter from './routers/companies/router.js'
 import aircraftsRouter from './routers/aircraft/router.js'
+import customersRouter from './routers/customer/router.js'
+import employeesRouter from './routers/employees/router.js'
 import cors from 'cors'
 
 dotenv.config()
@@ -34,3 +36,7 @@ app.use('/airports',airportRouter)
 app.use('/aircrafts',aircraftsRouter)
 
 app.use('/companies',companiesRouter)
+
+app.use('/customers',customersRouter)
+
+app.use('/employees',employeesRouter)

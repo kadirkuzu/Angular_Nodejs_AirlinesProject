@@ -23,7 +23,7 @@ export const getById = (req,res) =>{
 export const add = (req,res) =>{
     const {companyType,name,country,city,contactName,contactNumber} = req.body
     queries.changeName(companyType)
-    pool.query(queries.checkCompanyExist,[contactName],(error,results)=>{
+    pool.query(queries.checkCompanyExist,[contactName,contactNumber],(error,results)=>{
         if(error) res.status(404).json({message:error.message})
         else if(results.rows.length) res.status(404).json({message:`${companyType} already exists.`})
         else {

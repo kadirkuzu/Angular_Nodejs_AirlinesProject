@@ -13,6 +13,10 @@ export class UserService {
 
   isLoggedIn?:boolean
 
+  isLogged(){
+    return localStorage.getItem("isLoggedIn");
+  }
+
   login(email:string,password:string): Observable<User> {
     return this.http.post<User>(environment.api + `users/login`,{email,password});
   }

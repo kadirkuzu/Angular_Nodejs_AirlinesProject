@@ -1,0 +1,59 @@
+<div class="row justify-content-center w-100">
+    <div>
+        <form [formGroup]="addPilotForm">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <div>
+                    <input [ngClass]="{ 'is-invalid': email?.invalid   && (email?.dirty || email?.touched)}" formControlName="email"
+                        type="text" class="form-control" id="email" placeholder="Email">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="fullName" class="form-label">Full Name</label>
+                <div>
+                    <input [ngClass]="{ 'is-invalid': name?.invalid   && (name?.dirty || name?.touched)}" formControlName="name"
+                        type="text" class="form-control" id="fullName" placeholder="Full name">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone</label>
+                <div>
+                    <input [ngClass]="{ 'is-invalid': phone?.invalid   && (phone?.dirty || phone?.touched)}" formControlName="phone"
+                        type="text" class="form-control" id="phone" placeholder="Phone" prefix="+90 " mask="(000) 000 0000">
+                </div>
+            </div>
+            <div class="mb-2">
+                <label for="nationality" class="form-label">Nationality</label>
+                <div>
+                    <mat-select-country class="nationality" autocomplete="no" [value]="defaultValue" appearance="outline" (onCountrySelected)="onCountrySelected($event)" ></mat-select-country>      
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="yearStarted" class="form-label">Year Started</label>
+                <div>
+                    <input [ngClass]="{ 'is-invalid': yearStarted?.invalid   && (yearStarted?.dirty || yearStarted?.touched)}" formControlName="yearStarted"
+                        type="text" class="form-control" id="yearStarted" placeholder="Year Started" mask="0000">
+                </div>
+            </div>
+            <div class="mb-2">
+                <label for="age" class="form-label">Date Of Birth</label>
+                <div>
+                    <mat-form-field class="w-100" [floatLabel]="'never'">
+                        <mat-label>Date Of Birth</mat-label>
+                        <input formControlName="dob" matInput [matDatepicker]="picker">
+                        <mat-datepicker-toggle matSuffix matPrefix  [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="text-end" *ngIf="!pilot">
+                <button class="btn btn-danger" style="margin-right: 20px;" (click)="discard()">Discard changes</button>
+                <button class="btn btn-primary" [disabled]="addPilotForm.invalid" (click)="add()">Add</button>
+            </div>
+            <div class="text-end" *ngIf="pilot">
+                <button style="margin-right: 20px;" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button data-bs-dismiss="modal" class="btn btn-primary" [disabled]="addPilotForm.invalid" (click)="update()">Update</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -3,7 +3,9 @@
     <ng-container [matColumnDef]="col" *ngFor="let col of columns">
       <div *ngIf="col!='delete'">
         <th mat-header-cell *matHeaderCellDef> {{col}} </th>
-        <td mat-cell *matCellDef="let element" [routerLink]="element.id"> {{element[col]}} </td>
+        <td class="c-pointer" mat-cell *matCellDef="let element" [routerLink]="element.id">
+           {{isDate(col) ? (getValue(element,col) | date : 'dd MMMM y') : (getValue(element,col))}} 
+        </td>
       </div>
       <div *ngIf="col=='delete'">
         <th mat-header-cell *matHeaderCellDef></th>

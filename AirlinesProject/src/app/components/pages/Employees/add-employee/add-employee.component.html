@@ -1,0 +1,15 @@
+<div class="row justify-content-center w-100">
+    <div class="main col-11 col-xs-11 col-sm-11 col-md-11 col-lg-8 col-xl-8">
+            <div class="mb-3">
+                <label for="workArea" class="form-label">Select Work Area</label>
+                <ng-select [(ngModel)]="workArea" placeholder="Select work area">
+                    <ng-option *ngFor="let area of workAreas" [value]="area">
+                        {{area}}
+                    </ng-option>
+                </ng-select>
+            </div>
+            <ng-container [ngSwitch]="workArea">
+                <app-add-pilot *ngSwitchCase="'Pilot'"></app-add-pilot>
+            </ng-container>
+    </div>
+</div>

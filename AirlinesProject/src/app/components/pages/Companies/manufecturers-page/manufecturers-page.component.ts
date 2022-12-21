@@ -10,8 +10,28 @@ import { CompanyService } from 'src/app/services/company.service';
 export class ManufecturersPageComponent implements OnInit {
   isLoading:boolean = true
   manufacturers:Company[] = []
-  displayedColumns: string[] = ['name', 'city', 'country','contactName','contactNumber'];
-
+  displayedColumns: {value:string,name:string}[] = [
+    {
+      value:'name',
+      name: 'Name'
+    },
+    {
+      value:'city',
+      name: 'City'
+    },
+    {
+      value:'country',
+      name: 'Country'
+    },
+    {
+      value:'contactName',
+      name: 'Contact Name'
+    },
+    {
+      value:'contactNumber',
+      name: 'Contact Number'
+    }
+  ];
   constructor(private companyService:CompanyService) { }
 
   ngOnInit(): void {

@@ -40,11 +40,15 @@ export const add = (req,res) =>{
 
 export const update = (req,res) =>{
     const {id} = req.params
-    const values = [req.body.name,req.body.code,req.body.city,req.body.country,req.body.planeCapacity,req.body.yearBuilt, req.body.airportManagementId,id]
+    const values = [req.body.ownerId,req.body.modelId,req.body.aircraftName,req.body.yearBought,id]
     pool.query(queries.update,values,(error,results) => {
         if(error) res.status(404).json({message:error.message})
         else if(!results.rows.length) res.status(404).json({message:"Aircraft not found."})
-        else res.status(200).json({updatedAirport:results.rows[0]})
+        else{
+            pool.query(queries.getById,[id],(error,results) => {
+                res.status(200).json({updatedAircraft:results.rows[0]})
+            })
+        } 
     })
 }
 

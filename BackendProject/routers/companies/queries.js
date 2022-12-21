@@ -14,5 +14,5 @@ export function changeName(companyName){
     add = `INSERT INTO "${name}" (name,country,city,"contactName","contactNumber") VALUES ($1,$2,$3,$4,$5) RETURNING *`
     update = `UPDATE "${name}" SET name = $1 , code = $2 , city = $3 , country = $4 where id = $5 RETURNING *`
     deleteOne = `DELETE FROM "${name}" WHERE id = $1 RETURNING *`
-    checkCompanyExist = `SELECT s FROM "${name}" s WHERE s."contactName" = $1`
+    checkCompanyExist = `SELECT s FROM "${name}" s WHERE s."contactName" = $1 or s."contactNumber" = $2 `
 }

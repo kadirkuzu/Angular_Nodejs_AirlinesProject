@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -15,6 +15,9 @@ import { CompanyService } from 'src/app/services/company.service';
 export class AddAircraftComponent implements OnInit {
 
   @Input() aircraft?:Aircraft
+
+  @Output() updatedAircraft = new EventEmitter<Aircraft>();
+
 
   ownerList:Company[] = []
   modelList:any = []
@@ -40,6 +43,9 @@ export class AddAircraftComponent implements OnInit {
       this.ownerList = data
     })
     this.getModels()
+    if(this.aircraft){
+      this.addAircraftForm.reset({...this.aircraft})
+    }
   }
 
   getModels(){
@@ -66,17 +72,17 @@ export class AddAircraftComponent implements OnInit {
   }
 
   update(){
-    // let airport:any = this.addAirportForm.value
-    // this.airportService.update(airport,this.airport?.id!).subscribe({
-    //   next : (data)=>{
-    //     this.updatedAirport.emit(data.updatedAirport)
-    //     this.toastr.success("Airport updated successfully","Successfull")
-    //     this.addAirportForm.reset({...data.updatedAirport})
-    //   },
-    //   error:(e)=>{
-    //     this.toastr.error(e.error.message,"Error")
-    //   }
-    // })
+    let airport:any = this.addAircraftForm.value
+    this.aircraftService.update(airport,this.aircraft?.id!).subscribe({
+      next : (data)=>{
+        this.updatedAircraft.emit(data.updatedAircraft)
+        this.toastr.success("Aircraft updated successfully","Successfull")
+        this.addAircraftForm.reset({...data.updatedAircraft})
+      },
+      error:(e)=>{
+        this.toastr.error(e.error.message,"Error")
+      }
+    })
   }
 
   discard(){

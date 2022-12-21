@@ -10,7 +10,32 @@ import { AirportService } from 'src/app/services/airport.service';
 export class AirportsPageComponent implements OnInit {
 
   airports:Airport[] = []
-  displayedColumns: string[] = ['name', 'code', 'city', 'country','planeCapacity','yearBuilt'];
+  displayedColumns: {value:string,name:string}[] = [
+    {
+      value:'name',
+      name: 'Name'
+    },
+    {
+      value:'code',
+      name: 'Code'
+    },
+    {
+      value:'city',
+      name: 'City'
+    },
+    {
+      value:'country',
+      name: 'Country'
+    },
+    {
+      value:'planeCapacity',
+      name: 'Plane Capacity'
+    },
+    {
+      value:'yearBuilt',
+      name: 'Year Built'
+    },
+  ];
   isLoading:boolean = true
   constructor(private airportService:AirportService) { }
 

@@ -10,7 +10,24 @@ import { AircraftService } from 'src/app/services/aircraft.service';
 export class AircraftsPageComponent implements OnInit {
 
   aircrafts:Aircraft[] = []
-  displayedColumns: string[] = ['aircraftName', 'yearBought','ownerName','modelName'];
+  displayedColumns: {value:string,name:string}[] = [
+    {
+      value:'aircraftName',
+      name: 'Aircraft Name'
+    },
+    {
+      value:'yearBought',
+      name: 'Year Bought'
+    },
+    {
+      value:'ownerName',
+      name: 'Owner Name'
+    },
+    {
+      value:'modelName',
+      name: 'Model Name'
+    }
+  ];
   isLoading:boolean = true
 
   constructor(private aircraftService:AircraftService) { }

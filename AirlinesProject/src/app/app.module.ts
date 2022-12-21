@@ -44,6 +44,10 @@ import { RoutesPageComponent } from './components/pages/Customers/routes-page/ro
 import { CustomerDetailComponent } from './components/pages/Customers/customer-detail/customer-detail.component';
 import { AddAircraftComponent } from './components/pages/Aircrafts/add-aircraft/add-aircraft.component';
 import { AddAircraftModelComponent } from './components/pages/Aircrafts/add-aircraft-model/add-aircraft-model.component';
+import { AircraftDetailComponent } from './components/pages/Aircrafts/aircraft-detail/aircraft-detail.component';
+import { UpdateAircraftComponent } from './components/pages/Aircrafts/aircraft-detail/update-aircraft/update-aircraft.component';
+import { AddEmployeeComponent } from './components/pages/Employees/add-employee/add-employee.component';
+import { AddPilotComponent } from './components/pages/Employees/add-employee/add-pilot/add-pilot.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {
   showMaskTyped: false,
@@ -82,6 +86,10 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {
     CustomerDetailComponent,
     AddAircraftComponent,
     AddAircraftModelComponent,
+    AircraftDetailComponent,
+    UpdateAircraftComponent,
+    AddEmployeeComponent,
+    AddPilotComponent,
   ],
   imports: [
     BrowserModule,

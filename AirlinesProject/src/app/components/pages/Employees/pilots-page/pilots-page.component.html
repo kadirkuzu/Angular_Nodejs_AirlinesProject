@@ -1,1 +1,3 @@
-<p>pilots-page works!</p>
+<div class="main">
+    <app-table *ngIf="!isLoading" [inputColumns]="displayedColumns" [list]="pilots" [tableName]="'Pilots'" [typeName]="'employee'" [deleteUrl]="'pilots'" ></app-table>
+</div>
