@@ -14,6 +14,7 @@ export const createDatabaseINE = async () => {
         await pool.query(queries.createTables)
         return true;
     } catch (error) {
+        console.log(error);
         return false;
     } finally {
         await database.end();                             

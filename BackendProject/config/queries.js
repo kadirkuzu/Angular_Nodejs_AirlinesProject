@@ -97,20 +97,22 @@ CREATE TABLE "Pilots"
 	check("yearStarted" >= 1800 and "yearStarted" <= 2100)
 ) INHERITS ("Employees");
 
-CREATE TABLE "CabinPersonels"
-(
-	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	"crewId" INT NOT NULL,
-	CONSTRAINT fk_"crewId" FOREIGN KEY ("crewId") REFERENCES "CabinCrews"(id)
-	
-) INHERITS ("Employees");
-
 CREATE TABLE "CabinCrews"
 (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	"pilotId" INT NOT NULL,
 	CONSTRAINT fk_pilot FOREIGN KEY ("pilotId") REFERENCES "Pilots"(id)
 );
+
+CREATE TABLE "CabinPersonels"
+(
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	"crewId" INT NOT NULL,
+	CONSTRAINT fk_crewId FOREIGN KEY ("crewId") REFERENCES "CabinCrews"(id)
+	
+) INHERITS ("Employees");
+
+
 
 CREATE TABLE "GroundServicesChiefs"
 (
@@ -119,19 +121,21 @@ CREATE TABLE "GroundServicesChiefs"
 	check("yearStarted" >= 1800 and "yearStarted" <= 2100)
 ) INHERITS ("Employees");
 
-CREATE TABLE "GroundServicesPersonels"
-(
-	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	"crewId" INT NOT NULL,
-	CONSTRAINT fk_"crewId" FOREIGN KEY ("crewId") REFERENCES "GroundServicesCrews"(id)
-) INHERITS ("Employees");
-
 CREATE TABLE "GroundServicesCrews"
 (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	"gsCheifId" INT NOT NULL,
 	CONSTRAINT fk_chief FOREIGN KEY ("gsCheifId") REFERENCES "GroundServicesChiefs"(id)
 );
+
+CREATE TABLE "GroundServicesPersonels"
+(
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	"crewId" INT NOT NULL,
+	CONSTRAINT fk_crewId FOREIGN KEY ("crewId") REFERENCES "GroundServicesCrews"(id)
+) INHERITS ("Employees");
+
+
 
 
 
