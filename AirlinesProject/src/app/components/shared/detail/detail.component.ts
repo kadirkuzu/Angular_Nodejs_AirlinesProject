@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class DetailComponent implements OnInit {
   @Input() typeArray!:{name:string,value:string}[]
   @Input() element!:any
+  @Input() title!:string
   @Input() modalId!:string
   constructor() { }
 
