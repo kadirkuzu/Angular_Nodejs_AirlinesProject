@@ -10,6 +10,9 @@
             </div>
             <ng-container [ngSwitch]="workArea">
                 <app-add-pilot *ngSwitchCase="'Pilot'"></app-add-pilot>
+                <app-add-cabin-personel *ngSwitchCase="'Cabin Personel'"></app-add-cabin-personel>
+                <app-add-ground-service-chief *ngSwitchCase="'Ground Service Chief'"></app-add-ground-service-chief>
+                <app-add-ground-service-personel *ngSwitchCase="'Ground Service Personel'"></app-add-ground-service-personel>
             </ng-container>
     </div>
 </div>

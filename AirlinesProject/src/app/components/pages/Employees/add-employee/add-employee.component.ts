@@ -12,7 +12,10 @@ export class AddEmployeeComponent implements OnInit {
   workArea?:string
 
   workAreas = [
-    "Pilot"
+    "Pilot",
+    "Cabin Personel",
+    "Ground Service Chief",
+    "Ground Service Personel"
   ]
 
   ngOnInit(): void {

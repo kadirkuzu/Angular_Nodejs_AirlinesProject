@@ -1,6 +1,6 @@
 <div class="row justify-content-center w-100">
     <div>
-        <form [formGroup]="addPilotForm">
+        <form [formGroup]="addGroundServicePersonelForm">
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <div>
@@ -28,20 +28,11 @@
                     <mat-select-country class="nationality" autocomplete="no" [value]="defaultValue" appearance="outline" (onCountrySelected)="onCountrySelected($event)" ></mat-select-country>      
                 </div>
             </div>
-            <div class="mb-3 row">
-                <div class="col-6">
-                    <label for="yearStarted" class="form-label">Year Started</label>
-                    <div>
-                        <input [ngClass]="{ 'is-invalid': yearStarted?.invalid   && (yearStarted?.dirty || yearStarted?.touched)}" formControlName="yearStarted"
-                            type="text" class="form-control" id="yearStarted" placeholder="Year Started" mask="0000">
-                    </div>
-                </div>
-                <div class="col-6">
-                    <label for="salary" class="form-label">Salary</label>
-                    <div>
-                        <input [ngClass]="{ 'is-invalid': salary?.invalid   && (salary?.dirty || salary?.touched)}" formControlName="salary"
-                            type="number" class="form-control" id="yearStarted" placeholder="Salary">
-                    </div>
+            <div class="mb-3">
+                <label for="salary" class="form-label">Salary</label>
+                <div>
+                    <input [ngClass]="{ 'is-invalid': salary?.invalid   && (salary?.dirty || salary?.touched)}" formControlName="salary"
+                        type="number" class="form-control" id="yearStarted" placeholder="Salary">
                 </div>
             </div>
             <div class="mb-2">
@@ -55,13 +46,13 @@
                     </mat-form-field>
                 </div>
             </div>
-            <div class="text-end" *ngIf="!pilot">
+            <div class="text-end" *ngIf="!groundServicePersonel">
                 <button class="btn btn-danger" style="margin-right: 20px;" (click)="discard()">Discard changes</button>
-                <button class="btn btn-primary" [disabled]="addPilotForm.invalid" (click)="add()">Add</button>
+                <button class="btn btn-primary" [disabled]="addGroundServicePersonelForm.invalid" (click)="add()">Add</button>
             </div>
-            <div class="text-end" *ngIf="pilot">
+            <div class="text-end" *ngIf="groundServicePersonel">
                 <button style="margin-right: 20px;" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button data-bs-dismiss="modal" class="btn btn-primary" [disabled]="addPilotForm.invalid" (click)="update()">Update</button>
+                <button data-bs-dismiss="modal" class="btn btn-primary" [disabled]="addGroundServicePersonelForm.invalid" (click)="update()">Update</button>
             </div>
         </form>
     </div>

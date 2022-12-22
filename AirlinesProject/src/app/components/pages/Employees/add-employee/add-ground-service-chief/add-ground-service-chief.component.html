@@ -1,6 +1,6 @@
 <div class="row justify-content-center w-100">
     <div>
-        <form [formGroup]="addPilotForm">
+        <form [formGroup]="addServiceChiefForm">
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <div>
@@ -55,13 +55,13 @@
                     </mat-form-field>
                 </div>
             </div>
-            <div class="text-end" *ngIf="!pilot">
+            <div class="text-end" *ngIf="!groundServiceChief">
                 <button class="btn btn-danger" style="margin-right: 20px;" (click)="discard()">Discard changes</button>
-                <button class="btn btn-primary" [disabled]="addPilotForm.invalid" (click)="add()">Add</button>
+                <button class="btn btn-primary" [disabled]="addServiceChiefForm.invalid" (click)="add()">Add</button>
             </div>
-            <div class="text-end" *ngIf="pilot">
+            <div class="text-end" *ngIf="groundServiceChief">
                 <button style="margin-right: 20px;" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button data-bs-dismiss="modal" class="btn btn-primary" [disabled]="addPilotForm.invalid" (click)="update()">Update</button>
+                <button data-bs-dismiss="modal" class="btn btn-primary" [disabled]="addServiceChiefForm.invalid" (click)="update()">Update</button>
             </div>
         </form>
     </div>

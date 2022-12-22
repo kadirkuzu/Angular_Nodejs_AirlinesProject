@@ -23,8 +23,11 @@ import { PaymentsComponent } from './components/pages/Customers/payments/payment
 import { RoutesPageComponent } from './components/pages/Customers/routes-page/routes-page.component';
 import { TripsComponent } from './components/pages/Customers/trips/trips.component';
 import { AddEmployeeComponent } from './components/pages/Employees/add-employee/add-employee.component';
+import { CabinCrewsPageComponent } from './components/pages/Employees/cabin-crews-page/cabin-crews-page.component';
 import { CabinPersonelsPageComponent } from './components/pages/Employees/cabin-personels-page/cabin-personels-page.component';
 import { GroundServicesChiefsPageComponent } from './components/pages/Employees/ground-services-chiefs-page/ground-services-chiefs-page.component';
+import { GroundServicesCrewsPageComponent } from './components/pages/Employees/ground-services-crews-page/ground-services-crews-page.component';
+import { GroundServicesPersonelsPageComponent } from './components/pages/Employees/ground-services-personels-page/ground-services-personels-page.component';
 import { PilotsPageComponent } from './components/pages/Employees/pilots-page/pilots-page.component';
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
 import { LoginGuard } from './guards/login.guard';
@@ -48,6 +51,10 @@ const routes: Routes = [
   {path:'add-employee',component:AddEmployeeComponent,canActivate:[LoginGuard]},
   {path:'employees/pilots',component:PilotsPageComponent,canActivate:[LoginGuard]},
   {path:'employees/cabin-personels',component:CabinPersonelsPageComponent,canActivate:[LoginGuard]},
+  {path:'employees/cabin-crews',component:CabinCrewsPageComponent,canActivate:[LoginGuard]},
+  {path:'employees/ground-services-personels',component:GroundServicesPersonelsPageComponent,canActivate:[LoginGuard]},
+  {path:'employees/ground-services-crews',component:GroundServicesCrewsPageComponent,canActivate:[LoginGuard]},
+  {path:'employees/ground-services-chiefs',component:GroundServicesChiefsPageComponent,canActivate:[LoginGuard]},
   {path:'customers',component:CustomersPageComponent,canActivate:[LoginGuard]},
   {path:'add-customer',component:AddCustomerComponent,canActivate:[LoginGuard]},
   {path:'customers/flights',component:FlightsComponent,canActivate:[LoginGuard]},

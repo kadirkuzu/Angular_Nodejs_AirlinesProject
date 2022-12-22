@@ -7,7 +7,17 @@ router.get('/pilots',controller.getPilots)
 
 router.post('/pilots',controller.addPilot)
 
-router.get('/',controller.getAll)
+router.get('/ground-service-chiefs',controller.getGroundServiceChiefs)
+
+router.post('/ground-service-chiefs',controller.addGroundServiceChief)
+
+router.get('/ground-service-personels',controller.getGroundServicePersonels)
+
+router.post('/ground-service-personels',controller.addGroundServicePersonel)
+
+router.get('/cabin-personels',controller.getCabinPersonels)
+
+router.post('/cabin-personels',controller.addCabinPersonel)
 
 router.get('/:id',controller.getById)
 

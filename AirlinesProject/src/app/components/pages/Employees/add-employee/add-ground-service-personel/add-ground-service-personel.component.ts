@@ -2,40 +2,39 @@ import { Country } from '@angular-material-extensions/select-country';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Pilot } from 'src/app/models/employees';
+import { GroundServicePersonel } from 'src/app/models/employees';
 import { EmployeeService } from 'src/app/services/employees.service';
 
 @Component({
-  selector: 'app-add-pilot',
-  templateUrl: './add-pilot.component.html',
-  styleUrls: ['./add-pilot.component.scss']
+  selector: 'app-add-ground-service-personel',
+  templateUrl: './add-ground-service-personel.component.html',
+  styleUrls: ['./add-ground-service-personel.component.scss']
 })
-export class AddPilotComponent implements OnInit {
-  @Input() pilot?:Pilot
+export class AddGroundServicePersonelComponent implements OnInit {
+
+  @Input() groundServicePersonel?:GroundServicePersonel
 
   constructor(private employeeService:EmployeeService,private toastr:ToastrService) { }
 
 
-  addPilotForm = new FormGroup({
+  addGroundServicePersonelForm = new FormGroup({
     email: new FormControl('', [Validators.required,Validators.pattern("[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}")]),
     name: new FormControl('', [Validators.required]),
     phone : new FormControl('',[Validators.required,Validators.pattern("^[0-9 ()+]+$"), Validators.minLength(5)]),
     dob: new FormControl('', [Validators.required]),
     nationality: new FormControl('TR', [Validators.required]),
     salary: new FormControl(undefined as any, [Validators.required]),
-    yearStarted: new FormControl(undefined as any,[Validators.required,Validators.pattern("^[0-9 ()+]+$"),Validators.min(1800),Validators.max(2022)])
   })
 
   ngOnInit(): void {
   }
   
-  get email() { return this.addPilotForm.get('email') }
-  get name() { return this.addPilotForm.get('name') }
-  get dob() { return this.addPilotForm.get('dob') }
-  get phone() { return this.addPilotForm.get('phone') }
-  get nationality() { return this.addPilotForm.get('nationality') }
-  get yearStarted() { return this.addPilotForm.get('yearStarted') }
-  get salary() { return this.addPilotForm.get('salary') }
+  get email() { return this.addGroundServicePersonelForm.get('email') }
+  get name() { return this.addGroundServicePersonelForm.get('name') }
+  get dob() { return this.addGroundServicePersonelForm.get('dob') }
+  get phone() { return this.addGroundServicePersonelForm.get('phone') }
+  get nationality() { return this.addGroundServicePersonelForm.get('nationality') }
+  get salary() { return this.addGroundServicePersonelForm.get('salary') }
 
   defaultValue: Country = {
     alpha2Code:"TR",
@@ -46,18 +45,18 @@ export class AddPilotComponent implements OnInit {
   };
 
   onCountrySelected(event:any){
-    this.addPilotForm?.patchValue({nationality:event.alpha2Code})
+    this.addGroundServicePersonelForm?.patchValue({nationality:event.alpha2Code})
   }
 
   discard(){
-    this.addPilotForm.reset({nationality:"TR"})
+    this.addGroundServicePersonelForm.reset({nationality:"TR"})
   }
 
   add(){
-    let pilot:any = this.addPilotForm.value
-    this.employeeService.add("pilots",pilot).subscribe({
+    let cabinPersonel:any = this.addGroundServicePersonelForm.value
+    this.employeeService.add("ground-service-personels",cabinPersonel).subscribe({
       next : (data)=>{
-        this.toastr.success("Pilot added successfully","Successfull")
+        this.toastr.success("Ground service personel added successfully","Successfull")
         this.discard()
       },
       error:(e)=>{
@@ -79,6 +78,5 @@ export class AddPilotComponent implements OnInit {
     //   }
     // })
   }
-
 
 }

@@ -30,10 +30,8 @@ import { CompanyDetailComponent } from './components/pages/Companies/company-det
 import { PilotsPageComponent } from './components/pages/Employees/pilots-page/pilots-page.component';
 import { CabinPersonelsPageComponent } from './components/pages/Employees/./cabin-personels-page/cabin-personels-page.component';
 import { CabinCrewsPageComponent } from './components/pages/Employees/./cabin-crews-page/cabin-crews-page.component';
-import { CabinCrewPersonelsPageComponent } from './components/pages/Employees/cabin-crew-personels-page/cabin-crew-personels-page.component';
 import { GroundServicesChiefsPageComponent } from './components/pages/Employees/ground-services-chiefs-page/ground-services-chiefs-page.component';
 import { GroundServicesCrewsPageComponent } from './components/pages/Employees/./ground-services-crews-page/ground-services-crews-page.component';
-import { GroundServicesCrewPersonelsPageComponent } from './components/pages/Employees/./ground-services-crew-personels-page/ground-services-crew-personels-page.component';
 import { GroundServicesPersonelsPageComponent } from './components/pages/Employees/ground-services-personels-page/ground-services-personels-page.component';
 import { CustomersPageComponent } from './components/pages/Customers/customers-page/customers-page.component';
 import { AddCustomerComponent } from './components/pages/Customers/add-customer/add-customer.component';
@@ -48,6 +46,9 @@ import { AircraftDetailComponent } from './components/pages/Aircrafts/aircraft-d
 import { UpdateAircraftComponent } from './components/pages/Aircrafts/aircraft-detail/update-aircraft/update-aircraft.component';
 import { AddEmployeeComponent } from './components/pages/Employees/add-employee/add-employee.component';
 import { AddPilotComponent } from './components/pages/Employees/add-employee/add-pilot/add-pilot.component';
+import { AddCabinPersonelComponent } from './components/pages/Employees/add-employee/add-cabin-personel/add-cabin-personel.component';
+import { AddGroundServicePersonelComponent } from './components/pages/Employees/add-employee/add-ground-service-personel/add-ground-service-personel.component';
+import { AddGroundServiceChiefComponent } from './components/pages/Employees/add-employee/add-ground-service-chief/add-ground-service-chief.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {
   showMaskTyped: false,
@@ -71,11 +72,9 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {
     PilotsPageComponent,
     CabinPersonelsPageComponent,
     CabinCrewsPageComponent,
-    CabinCrewPersonelsPageComponent,
     GroundServicesChiefsPageComponent,
     GroundServicesPersonelsPageComponent,
     GroundServicesCrewsPageComponent,
-    GroundServicesCrewPersonelsPageComponent,
     GroundServicesPersonelsPageComponent,
     CustomersPageComponent,
     AddCustomerComponent,
@@ -90,6 +89,9 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {
     UpdateAircraftComponent,
     AddEmployeeComponent,
     AddPilotComponent,
+    AddCabinPersonelComponent,
+    AddGroundServicePersonelComponent,
+    AddGroundServiceChiefComponent,
   ],
   imports: [
     BrowserModule,

@@ -33,7 +33,7 @@ export const add = (req,res) =>{
             pool.query(queries.checkPhoneExist,[phone],(error,results)=>{
                 if(error) res.status(404).json({message:error.message})
                 else if(results.rows.length) res.status(404).json({message:"Phone already exists."})
-                else pool.query(queries.add,[email,name,phone,nationality,dob,0],(error,results)=>{
+                else pool.query(queries.add,[email,name,phone,nationality,dob],(error,results)=>{
                     if(error) res.status(404).json({message:error.message})
                     else res.status(201).json({user:results.rows[0]})
                 })

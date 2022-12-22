@@ -94,6 +94,7 @@ CREATE TABLE "Pilots"
 (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	"yearStarted" INT NOT NULL,
+	"crewCount" INT NOT NULL DEFAULT 0,
 	check("yearStarted" >= 1800 and "yearStarted" <= 2100)
 ) INHERITS ("Employees");
 
@@ -107,7 +108,7 @@ CREATE TABLE "CabinCrews"
 CREATE TABLE "CabinPersonels"
 (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	"crewId" INT NOT NULL,
+	"crewId" INT,
 	CONSTRAINT fk_crewId FOREIGN KEY ("crewId") REFERENCES "CabinCrews"(id)
 	
 ) INHERITS ("Employees");
@@ -118,6 +119,7 @@ CREATE TABLE "GroundServicesChiefs"
 (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	"yearStarted" INT NOT NULL,
+	"crewCount" INT NOT NULL DEFAULT 0,
 	check("yearStarted" >= 1800 and "yearStarted" <= 2100)
 ) INHERITS ("Employees");
 
@@ -131,7 +133,7 @@ CREATE TABLE "GroundServicesCrews"
 CREATE TABLE "GroundServicesPersonels"
 (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	"crewId" INT NOT NULL,
+	"crewId" INT,
 	CONSTRAINT fk_crewId FOREIGN KEY ("crewId") REFERENCES "GroundServicesCrews"(id)
 ) INHERITS ("Employees");
 
@@ -162,6 +164,7 @@ CREATE TABLE "Routes"
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	"startingAirportId" INT NOT NULL,
 	"finalAirportId" INT NOT NULL,
+	"flightTime" INT NOT NULL,
 	check("startingAirportId" != "finalAirportId"),
 	UNIQUE ("startingAirportId", "finalAirportId"),
 	CONSTRAINT fk_starting_airport_id FOREIGN KEY ("startingAirportId") REFERENCES "Airports"(id),

@@ -1,15 +1,29 @@
 import pool from "../../config/db.js"
 import * as queries from "./queries.js"
 
-export const getAll = (req,res) =>{
-    pool.query(queries.getAll,(error,results) => {
+export const getPilots = (req,res) =>{
+    pool.query(queries.getPilots,(error,results) => {
         if (error) res.status(404).json({message:error.message})
         else res.status(200).json(results.rows)
     })
 }
 
-export const getPilots = (req,res) =>{
-    pool.query(queries.getPilots,(error,results) => {
+export const getGroundServiceChiefs = (req,res) =>{
+    pool.query(queries.getGroundServiceChiefs,(error,results) => {
+        if (error) res.status(404).json({message:error.message})
+        else res.status(200).json(results.rows)
+    })
+}
+
+export const getCabinPersonels = (req,res) =>{
+    pool.query(queries.getCabinPersonels,(error,results) => {
+        if (error) res.status(404).json({message:error.message})
+        else res.status(200).json(results.rows)
+    })
+}
+
+export const getGroundServicePersonels = (req,res) =>{
+    pool.query(queries.getGroundServicePersonels,(error,results) => {
         if (error) res.status(404).json({message:error.message})
         else res.status(200).json(results.rows)
     })
@@ -24,13 +38,13 @@ export const getById = (req,res) =>{
     })
 }
 
-export const add = (req,res) =>{
-    const {name,code,city,country,airportManagementId,planeCapacity,yearBuilt} = req.body
-    pool.query(queries.checkAirportExist,[code],(error,results)=>{
+export const addPilot = (req,res) =>{
+    const {yearStarted,email,dob,name,phone,nationality,salary} = req.body
+    pool.query(queries.checkEmployeeExist,[email,phone],(error,results)=>{
         if(error) res.status(404).json({message:error.message})
-        else if(results.rows.length) res.status(404).json({message:"Airport already exists."})
+        else if(results.rows.length) res.status(404).json({message:"Employee already exists."})
         else {
-            pool.query(queries.add,[name,code,city,country,airportManagementId,planeCapacity,yearBuilt],(error,results)=>{
+            pool.query(queries.addPilot,[yearStarted,email,dob,name,phone,nationality,salary],(error,results)=>{
                 if(error) res.status(404).json({message:error.message})
                 else res.status(201).json(results.rows)
             })
@@ -38,13 +52,41 @@ export const add = (req,res) =>{
     })
 }
 
-export const addPilot = (req,res) =>{
-    const {yearStarted,email,dob,name,phone,nationality} = req.body
-    pool.query(queries.checkPilotExist,[email,phone],(error,results)=>{
+export const addGroundServiceChief = (req,res) =>{
+    const {yearStarted,email,dob,name,phone,nationality,salary} = req.body
+    pool.query(queries.checkEmployeeExist,[email,phone],(error,results)=>{
         if(error) res.status(404).json({message:error.message})
-        else if(results.rows.length) res.status(404).json({message:"Pilot already exists."})
+        else if(results.rows.length) res.status(404).json({message:"Employee already exists."})
         else {
-            pool.query(queries.addPilot,[yearStarted,email,dob,name,phone,nationality,0],(error,results)=>{
+            pool.query(queries.addGroundServiceChief,[yearStarted,email,dob,name,phone,nationality,salary],(error,results)=>{
+                if(error) res.status(404).json({message:error.message})
+                else res.status(201).json(results.rows)
+            })
+        }
+    })
+}
+
+export const addGroundServicePersonel = (req,res) =>{
+    const {email,dob,name,phone,nationality,salary} = req.body
+    pool.query(queries.checkEmployeeExist,[email,phone],(error,results)=>{
+        if(error) res.status(404).json({message:error.message})
+        else if(results.rows.length) res.status(404).json({message:"Employee already exists."})
+        else {
+            pool.query(queries.addGroundServicePersonel,[email,dob,name,phone,nationality,salary],(error,results)=>{
+                if(error) res.status(404).json({message:error.message})
+                else res.status(201).json(results.rows)
+            })
+        }
+    })
+}
+
+export const addCabinPersonel = (req,res) =>{
+    const {email,dob,name,phone,nationality,salary} = req.body
+    pool.query(queries.checkEmployeeExist,[email,phone],(error,results)=>{
+        if(error) res.status(404).json({message:error.message})
+        else if(results.rows.length) res.status(404).json({message:"Employee already exists."})
+        else {
+            pool.query(queries.addCabinPersonel,[email,dob,name,phone,nationality,salary],(error,results)=>{
                 if(error) res.status(404).json({message:error.message})
                 else res.status(201).json(results.rows)
             })

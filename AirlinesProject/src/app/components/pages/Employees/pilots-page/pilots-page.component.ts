@@ -39,6 +39,10 @@ export class PilotsPageComponent implements OnInit {
       value:'nationality',
       name: 'Nationality'
     },
+    {
+      value:'crewCount',
+      name: 'Crew Count'
+    },
   ];
   isLoading:boolean = true
   constructor(private employeeService:EmployeeService) { }

@@ -1,1 +1,3 @@
-<p>ground-services-chiefs-page works!</p>
+<div class="main">
+    <app-table *ngIf="!isLoading" [inputColumns]="displayedColumns" [list]="groundServicesChiefs" [tableName]="'Ground Services Chiefs'" [typeName]="'employee'" [deleteUrl]="'pilots'" ></app-table>
+</div>
