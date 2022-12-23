@@ -15,6 +15,10 @@ export class FlightService {
     return this.http.get<Flight[]>(environment.api + `flights`);
   }
 
+  get(id:number): Observable<Flight> {
+    return this.http.get<Flight>(environment.api + `flights/${id}`);
+  }
+
   add(flight:any): Observable<Flight> {
     return this.http.post<Flight>(environment.api + `flights`,flight);
   }

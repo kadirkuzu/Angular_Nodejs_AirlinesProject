@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Trip } from 'src/app/models/trip';
+import { TripService } from 'src/app/services/trip.service';
 
 @Component({
   selector: 'app-trips',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TripsComponent implements OnInit {
 
-  constructor() { }
+  trips:Trip[] = []
+
+  constructor(private tripService:TripService) { }
 
   ngOnInit(): void {
+    this.tripService.getAll().subscribe(data=>{
+      this.trips = data
+    })
   }
 
 }

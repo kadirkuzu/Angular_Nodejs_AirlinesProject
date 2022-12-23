@@ -1,0 +1,25 @@
+.accordion-toggle {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 0 0 ;
+}
+  
+.accordion-toggle.collapsed {
+    background-color: #dee2e6;
+    color: black;
+}
+
+.accordion-button:focus {
+    border-color: #6c757d;
+    box-shadow: 0 0 0 2.5px #e9ecef
+}
+
+.title{
+    margin-bottom: 0;
+}
+
+.accordion-bodyy{
+    padding: 5px;
+    border: 2px solid #e9ecef
+}

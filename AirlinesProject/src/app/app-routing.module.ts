@@ -32,6 +32,7 @@ import { HomePageComponent } from './components/pages/home-page/home-page.compon
 import { LoginGuard } from './guards/login.guard';
 import { LogoutGuard } from './guards/logout.guard';
 import { AddFlightComponent } from './components/pages/flights/add-flight/add-flight.component';
+import { AddTripComponent } from './components/pages/Customers/trips/add-trip/add-trip.component';
 
 const routes: Routes = [
   {path:'',component:HomePageComponent},
@@ -61,6 +62,7 @@ const routes: Routes = [
   {path:'customers',component:CustomersPageComponent,canActivate:[LoginGuard]},
   {path:'add-customer',component:AddCustomerComponent,canActivate:[LoginGuard]},
   {path:'customers/trips',component:TripsComponent,canActivate:[LoginGuard]},
+  {path:'customers/add-trip',component:AddTripComponent,canActivate:[LoginGuard]},
   {path:'customer/:id',component:CustomerDetailComponent},
   {path:'login',component:LoginComponent,canActivate:[LogoutGuard]},
   {path:'register',component:RegisterComponent,canActivate:[LogoutGuard]},

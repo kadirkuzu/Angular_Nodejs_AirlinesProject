@@ -1,1 +1,43 @@
-<p>add-trip works!</p>
+<div class="row justify-content-center w-100">
+    <div class="main col-11 col-xs-11 col-sm-11 col-md-11 col-lg-8 col-xl-8">
+        <form [formGroup]="addTripForm">
+            <div class="mb-3">
+                <label class="form-label">Flight</label>
+                <ng-select formControlName="flightId" placeholder="Select flight">
+                    <ng-option *ngFor="let flight of flights" [value]="flight.id">
+                        {{flight.departureAirportName}}({{flight.departureAirportCode}}) -> {{flight.arrivalAirportName}}({{flight.arrivalAirportCode}})
+                    </ng-option>
+                    <ng-template ng-notfound-tmp>
+                        <div class="ng-option disabled">
+                            No any airport found . <span class="router-text" (click)="routeTo('add-airport')">Click to add airport</span>
+                        </div>
+                      </ng-template>
+                </ng-select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Customer</label>
+                <ng-select formControlName="customerId" placeholder="Select customer">
+                    <ng-option *ngFor="let customer of customers" [value]="customer.id">
+                        {{customer.name+" ("+customer.email+")"}}
+                    </ng-option>
+                    <ng-template ng-notfound-tmp>
+                        <div class="ng-option disabled">
+                            No any customer found . <span class="router-text" (click)="routeTo('add-customer')">Click to add customer</span>
+                        </div>
+                      </ng-template>
+                </ng-select>
+            </div>
+            <div class="mb-3">
+                <label for="tripRating" class="form-label">Trip Rating</label>
+                <div>
+                    <input [ngClass]="{ 'is-invalid': tripRating?.invalid   && (tripRating?.dirty || tripRating?.touched)}" formControlName="tripRating"
+                        type="text" class="form-control" id="tripRating" placeholder="Trip Rating" mask="0">
+                </div>
+            </div>
+            <div class="text-end">
+                <button class="btn btn-danger" style="margin-right: 20px;" (click)="discard()">Discard changes</button>
+                <button class="btn btn-primary" [disabled]="addTripForm.invalid" (click)="add()">Add</button>
+            </div>
+        </form>
+    </div>
+</div>

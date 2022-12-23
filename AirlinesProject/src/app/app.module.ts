@@ -54,6 +54,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { NgxMatDatetimePickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { FlightComponent } from './components/pages/flights/flight/flight.component';
+import { TripComponent } from './components/pages/Customers/trips/trip/trip.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {
   showMaskTyped: false,
@@ -99,6 +100,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {
     AddFlightComponent,
     AddTripComponent,
     FlightComponent,
+    TripComponent,
   ],
   imports: [
     BrowserModule,

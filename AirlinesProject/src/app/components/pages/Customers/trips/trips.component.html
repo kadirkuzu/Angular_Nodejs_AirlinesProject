@@ -1,1 +1,13 @@
-<p>trips works!</p>
+<div class="main">
+    <div class="row">
+        <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6" *ngFor="let trip of trips;index as i">
+            <app-trip [trip]="trip" [index]="i"></app-trip>
+        </div>
+    </div>
+</div>
+<div *ngIf="trips.length" class="ml-2">
+    You can add trip <span [routerLink]="'/customers/add-trip'" class="router-text">here</span>
+</div>
+<div class="alert alert-secondary mt-2" *ngIf="!trips.length">
+    Trip could not be found. You can add <span [routerLink]="'/customers/add-trip'" class="router-text">here</span>
+</div>

@@ -1,0 +1,34 @@
+<div class="accordion accordion-flush" id="accordionFlight{{trip.id}}">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed accordion-toggle" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#flush-collapsef'+trip.id" aria-expanded="false" aria-controls="flush-collapseOne">
+            Trip {{index+1}}
+            </button>
+        </h2>
+        <div id="flush-collapsef{{trip.id}}" class="accordion-collapse collapse mt-1 accordion-bodyy" aria-labelledby="flush-headingOne" [attr.data-bs-parent]="'#accordionFlight'+trip.id">
+            <div class="row">
+                    <div class="col-12 title text-center">Customer Information</div>
+                    <div class="row">
+                        <div class="col-3">Name :</div>
+                        <div class="col-9 fw-bold">{{customer?.name|titlecase}}</div>
+                        <div class="col-3">Email :</div>
+                        <div class="col-9 fw-bold">{{customer?.email|titlecase}}</div>
+                        <div class="col-3">Age :</div>
+                        <div class="col-9 fw-bold">{{getAge(customer?.dob!)}}</div>
+                    </div>
+                    <div class="col-12 title text-center">Flight Information</div>
+                    <div class="row mt-1">
+                        <div class="col-3">From :</div>
+                        <div class="col-9 fw-bold">{{flight?.departureAirportName|titlecase}} ({{flight?.departureAirportCode|titlecase}})</div>
+                        <div class="col-3">To :</div>
+                        <div class="col-9 fw-bold">{{flight?.arrivalAirportName|titlecase}} ({{flight?.arrivalAirportCode|titlecase}})</div>
+                        <div class="col-3">Flight Date :</div>
+                        <div class="col-9 fw-bold">{{flight?.flightDate | date:"EEEE, MMMM d, y, h:mm"}}</div>
+                    </div>
+                    <div class="col-3 mt-3">Trip Rating : </div>
+                    <div class="col-9 fw-bold mt-3">{{trip.tripRating}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+

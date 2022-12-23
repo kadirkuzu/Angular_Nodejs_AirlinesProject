@@ -9,6 +9,7 @@ import customersRouter from './routers/customer/router.js'
 import employeesRouter from './routers/employees/router.js'
 import routeRouter from './routers/route/router.js'
 import flightsRouter from './routers/flights/router.js'
+import tripsRouter from './routers/trips/router.js'
 import cors from 'cors'
 
 dotenv.config()
@@ -46,3 +47,5 @@ app.use('/employees',employeesRouter)
 app.use('/routes',routeRouter)
 
 app.use('/flights',flightsRouter)
+
+app.use('/trips',tripsRouter)
