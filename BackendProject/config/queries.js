@@ -204,5 +204,145 @@ CREATE TABLE "Trips"
 );
 
 
+--TRIGGERS
+
+CREATE OR REPLACE FUNCTION "increase_customer_rank"()
+RETURNS TRIGGER 
+AS
+$$
+BEGIN
+	UPDATE "Customers"
+	SET "customerRank" = "customerRank" + 1
+	WHERE id = NEW."customerId";
+	RETURN NULL;
+END;
+$$
+LANGUAGE "plpgsql";
+
+CREATE OR REPLACE TRIGGER "increase_customer_rank"
+AFTER INSERT ON "Trips"
+FOR EACH ROW
+EXECUTE PROCEDURE "increase_customer_rank"();
+
+
+CREATE OR REPLACE FUNCTION "capitalize_country"()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.nationality = UPPER(NEW.nationality);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER "capitalize_country_pilots"
+BEFORE INSERT ON "Pilots"
+FOR EACH ROW EXECUTE PROCEDURE "capitalize_country"();
+
+CREATE OR REPLACE TRIGGER "capitalize_country_customers"
+BEFORE INSERT ON "Customers"
+FOR EACH ROW EXECUTE PROCEDURE "capitalize_country"();
+
+CREATE OR REPLACE TRIGGER "capitalize_country_cabinpersonels"
+BEFORE INSERT ON "CabinPersonels"
+FOR EACH ROW EXECUTE PROCEDURE "capitalize_country"();
+
+CREATE OR REPLACE TRIGGER "capitalize_country_gsChiefs"
+BEFORE INSERT ON "GroundServicesChiefs"
+FOR EACH ROW EXECUTE PROCEDURE "capitalize_country"();
+
+CREATE OR REPLACE TRIGGER "capitalize_country_gsPersonels"
+BEFORE INSERT ON "GroundServicesPersonels"
+FOR EACH ROW EXECUTE PROCEDURE "capitalize_country"();
+
+
+
+
+
+CREATE OR REPLACE FUNCTION "increase_chief_crew_count"()
+RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE "GroundServicesChiefs" SET "crewCount" = "crewCount" + 1 WHERE id = NEW."gsCheifId";
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER "increase_chief_crew_count"
+AFTER INSERT ON "GroundServicesCrews"
+FOR EACH ROW
+EXECUTE PROCEDURE "increase_chief_crew_count"();
+
+
+
+CREATE OR REPLACE FUNCTION "increase_pilot_crew_count"()
+RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE "Pilots" SET "crewCount" = "crewCount" + 1 WHERE id = NEW."pilotId";
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER "increase_pilot_crew_count"
+AFTER INSERT ON "CabinCrews"
+FOR EACH ROW
+EXECUTE PROCEDURE "increase_pilot_crew_count"();
+
+
+
+
+--FUNCS
+
+
+CREATE OR REPLACE FUNCTION "count_customer"()
+RETURNS integer AS $$
+BEGIN
+  RETURN (SELECT COUNT(*) FROM "Customers");
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+CREATE OR REPLACE FUNCTION "get_total_payments"()
+RETURNS int AS
+$$
+DECLARE
+    total int;
+BEGIN
+    SELECT SUM(amount) INTO "total" FROM "Trips";
+    RETURN total;
+END;
+$$
+LANGUAGE plpgsql;
+
+
+
+CREATE OR REPLACE FUNCTION "get_trip_count"()
+RETURNS integer AS $$
+BEGIN
+  RETURN (SELECT COUNT(*) FROM "Trips");
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+CREATE OR REPLACE FUNCTION "get_most_referenced_customer_name"()
+RETURNS text AS
+$$
+DECLARE
+  most_referenced_customer_name text;
+BEGIN
+  SELECT c."name"
+  INTO most_referenced_customer_name
+  FROM "Customers" c
+  INNER JOIN "Trips" t ON t."customerId" = c."id"
+  GROUP BY c."id"
+  ORDER BY COUNT(*) DESC
+  LIMIT 1;
+
+  RETURN most_referenced_customer_name;
+END;
+$$
+LANGUAGE plpgsql;
+
+
+
 
 `
