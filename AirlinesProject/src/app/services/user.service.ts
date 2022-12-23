@@ -14,15 +14,19 @@ export class UserService {
   isLoggedIn?:boolean
 
   isLogged(){
-    return localStorage.getItem("isLoggedIn");
+    return localStorage.getItem("loggedInId");
   }
 
-  login(email:string,password:string): Observable<User> {
-    return this.http.post<User>(environment.api + `users/login`,{email,password});
+  login(email:string,password:string): Observable<{user:User}> {
+    return this.http.post<{user:User}>(environment.api + `users/login`,{email,password});
   }
 
   register(user:any): Observable<User> {
     return this.http.post<User>(environment.api + `users/register`,user);
+  }
+
+  get(id:number): Observable<User> {
+    return this.http.get<User>(environment.api + `users/${id}`);
   }
   
 }

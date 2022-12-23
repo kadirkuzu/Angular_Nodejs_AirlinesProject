@@ -55,6 +55,7 @@ import { NgxMatDatetimePickerModule, NgxMatNativeDateModule } from '@angular-mat
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { FlightComponent } from './components/pages/flights/flight/flight.component';
 import { TripComponent } from './components/pages/Customers/trips/trip/trip.component';
+import { MyPageComponent } from './components/header/my-page/my-page.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {
   showMaskTyped: false,
@@ -101,6 +102,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {
     AddTripComponent,
     FlightComponent,
     TripComponent,
+    MyPageComponent,
   ],
   imports: [
     BrowserModule,

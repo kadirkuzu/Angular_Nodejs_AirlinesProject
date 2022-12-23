@@ -1,3 +1,20 @@
 <app-navbar></app-navbar>
 <button *ngIf="!isLogged()" class="btn btn-primary header-buttons" routerLink="login">Login</button>
-<button *ngIf="isLogged()" class="btn btn-danger header-buttons" (click)="logOut()" >Log out</button>
+<div *ngIf="isLogged()" class="header-buttons">
+    <div class="row">
+        <div class="col-6">
+            <div class="btn-group dropstart">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{isLogged()|titlecase}}
+                </button>
+                <ul class="dropdown-menu">
+                    <li><span class="dropdown-item c-pointer" routerLink="/my-page">My Page</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-6">
+            <button class="btn btn-danger" (click)="logOut()" >Log out</button>
+        </div>
+    </div>
+
+</div>

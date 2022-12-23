@@ -15,11 +15,11 @@ export class HeaderComponent implements OnInit {
   }
 
   isLogged(){
-    return localStorage.getItem("isLoggedIn");
+    return localStorage.getItem("loggedInName");
   }
 
   logOut(){
-    localStorage.removeItem("isLoggedIn")
+    localStorage.removeItem("loggedInId")
     this.router.navigate(["/login"])
     this.userService.isLoggedIn = false
   }

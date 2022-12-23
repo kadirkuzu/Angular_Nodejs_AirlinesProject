@@ -29,7 +29,8 @@ export class LoginComponent implements OnInit {
       next : (data)=>{
         this.toastr.success("Successfully logged in","Successfull",{timeOut:1500})
         this.router.navigate(["/home"])
-        localStorage.setItem("isLoggedIn", String(data.id))
+        localStorage.setItem("loggedInName", String(data.user.name))
+        localStorage.setItem("loggedInId", String(data.user.id))
         this.userService.isLoggedIn=true
       },
       error:(e)=>{

@@ -4,3 +4,19 @@
     top: 10px;
     border-radius: 5px;
 }
+
+.dropdown-menu.show{
+    margin-right: 20px !important;
+    height: 40px;
+    width: 60px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    li::after{
+        background-color: black;
+    }
+}
+
+.dropdown-item:active{
+    background-color: #5c636a;
+}
