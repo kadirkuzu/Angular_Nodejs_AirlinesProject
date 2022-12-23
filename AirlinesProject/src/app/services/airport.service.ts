@@ -15,7 +15,7 @@ export class AirportService {
     return this.http.get<Airport[]>(environment.api + `airports`);
   }
 
-  get(id:string): Observable<Airport> {
+  get(id:number): Observable<Airport> {
     return this.http.get<Airport>(environment.api + `airports/${id}`);
   }
 

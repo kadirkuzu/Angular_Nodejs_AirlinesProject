@@ -45,7 +45,7 @@ export class AirportDetailComponent implements OnInit {
     });
   }
 
-  getAirport(id:string){
+  getAirport(id:number){
     this.airportService.get(id).subscribe(data=>{
       this.airport = data
     })

@@ -1,0 +1,40 @@
+<div class="modal fade" [id]="'addCrewModal'+useFor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add {{useFor == "cabinCrews" ? "Cabin Crew" : "Ground Service Crew"}}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div>
+                <form [formGroup]="addCrewForm">
+                    <div class="mb-3">
+                        <label class="form-label">{{useFor == "cabinCrews" ? "Pilot" : "Chief"}}</label>
+                        <ng-select formControlName="firstElemanId" placeholder="Select {{useFor == 'cabinCrews' ? 'Pilot' : 'Chief'}}" (open)="getFirstEleman()">
+                            <ng-option *ngFor="let eleman of firstElemanList" [value]="eleman.id">
+                                {{eleman.name+"("+eleman.yearStarted+")"}}
+                            </ng-option>
+                            <ng-template ng-notfound-tmp>
+                                <div class="ng-option disabled">
+                                    No any {{useFor == "cabinCrews" ? "pilot" : "chief"}} found . <span class="router-text" data-bs-dismiss="modal" (click)="navigate('/add-employee')">Click to add {{useFor == "cabinCrews" ? "pilot" : "chief"}}</span>
+                                </div>
+                            </ng-template>
+                        </ng-select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <div>
+                            <input [ngClass]="{ 'is-invalid': name?.invalid   && (name?.dirty || name?.touched)}" formControlName="name"
+                                type="text" class="form-control" id="name" placeholder="Name">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger" style="margin-right: 20px;" data-bs-dismiss="modal" (click)="discard()">Close</button>
+            <button class="btn btn-primary" data-bs-dismiss="modal" [disabled]="addCrewForm.invalid" (click)="add()">Add</button>
+        </div>
+      </div>
+    </div>
+</div>

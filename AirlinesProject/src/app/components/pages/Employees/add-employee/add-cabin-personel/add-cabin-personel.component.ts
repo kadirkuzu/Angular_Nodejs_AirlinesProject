@@ -16,6 +16,7 @@ export class AddCabinPersonelComponent implements OnInit {
 
   constructor(private employeeService:EmployeeService,private toastr:ToastrService) { }
 
+  crewList:any
 
   addCabinPersonelForm = new FormGroup({
     email: new FormControl('', [Validators.required,Validators.pattern("[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}")]),
@@ -24,9 +25,11 @@ export class AddCabinPersonelComponent implements OnInit {
     dob: new FormControl('', [Validators.required]),
     nationality: new FormControl('TR', [Validators.required]),
     salary: new FormControl(undefined as any, [Validators.required]),
+    crewId: new FormControl(undefined as any, [Validators.required]),
   })
 
   ngOnInit(): void {
+    this.getCrews()
   }
   
   get email() { return this.addCabinPersonelForm.get('email') }
@@ -35,6 +38,7 @@ export class AddCabinPersonelComponent implements OnInit {
   get phone() { return this.addCabinPersonelForm.get('phone') }
   get nationality() { return this.addCabinPersonelForm.get('nationality') }
   get salary() { return this.addCabinPersonelForm.get('salary') }
+  get crewId() { return this.addCabinPersonelForm.get('crewId') }
 
   defaultValue: Country = {
     alpha2Code:"TR",
@@ -43,6 +47,12 @@ export class AddCabinPersonelComponent implements OnInit {
     name: "Turkey",
     numericCode: "792"
   };
+
+  getCrews(){
+    this.employeeService.getAll("cabin-crews").subscribe(data=>{
+      this.crewList = data
+    })
+  }
 
   onCountrySelected(event:any){
     this.addCabinPersonelForm?.patchValue({nationality:event.alpha2Code})

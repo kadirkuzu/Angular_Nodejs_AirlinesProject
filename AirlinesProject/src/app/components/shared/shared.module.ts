@@ -7,12 +7,18 @@ import { TableComponent } from './table/table.component'
 import { NgSelectModule } from "@ng-select/ng-select";
 import { DeleteModalComponent } from './table/delete-modal/delete-modal.component';
 import { DetailComponent } from './detail/detail.component';
+import { AddCrewComponent } from './add-crew/add-crew.component';
+import { CrewComponent } from './crew/crew.component';
+import { AddRouteComponent } from './add-route/add-route.component';
 
 @NgModule({
   declarations: [
     TableComponent,
     DeleteModalComponent,
-    DetailComponent
+    DetailComponent,
+    AddCrewComponent,
+    CrewComponent,
+    AddRouteComponent
   ],
   imports: [
     CommonModule,
@@ -20,11 +26,15 @@ import { DetailComponent } from './detail/detail.component';
     RouterModule,
     ReactiveFormsModule,
     MatTableModule,
+    NgSelectModule
   ],
   exports: [
     MatTableModule,
     TableComponent,
-    DetailComponent
+    DetailComponent,
+    AddCrewComponent,
+    CrewComponent,
+    AddRouteComponent
   ]
 })
 export class SharedModule { }

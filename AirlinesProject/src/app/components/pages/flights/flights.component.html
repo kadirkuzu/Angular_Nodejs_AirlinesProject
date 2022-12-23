@@ -1,0 +1,13 @@
+<div class="main">
+    <div class="row">
+        <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6" *ngFor="let flight of flights;index as i">
+            <app-flight [id]="flight.id" [flight]="flight" [index]="i"></app-flight>
+        </div>
+    </div>
+</div>
+<div *ngIf="flights.length" class="ml-2">
+    You can add flight <span [routerLink]="'/add-flight'" class="router-text">here</span>
+</div>
+<div class="alert alert-secondary mt-2" *ngIf="!flights.length">
+    Flight could not be found. You can add <span [routerLink]="'/add-flight'" class="router-text">here</span>
+</div>

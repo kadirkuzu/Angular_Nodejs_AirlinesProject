@@ -5,21 +5,31 @@ const router = Router()
 
 router.get('/pilots',controller.getPilots)
 
-router.post('/pilots',controller.addPilot)
-
 router.get('/ground-service-chiefs',controller.getGroundServiceChiefs)
-
-router.post('/ground-service-chiefs',controller.addGroundServiceChief)
 
 router.get('/ground-service-personels',controller.getGroundServicePersonels)
 
-router.post('/ground-service-personels',controller.addGroundServicePersonel)
+router.get('/ground-service-personels/:id',controller.getGroundServicePersonelsWithCrewId)
 
 router.get('/cabin-personels',controller.getCabinPersonels)
 
+router.get('/cabin-personels/:id',controller.getCabinPersonelsWithCrewId)
+
+router.get('/cabin-crews',controller.getCabinCrews)
+
+router.get('/ground-service-crews',controller.getGroundServiceCrews)
+
+router.post('/pilots',controller.addPilot)
+
+router.post('/ground-service-chiefs',controller.addGroundServiceChief)
+
+router.post('/ground-service-personels',controller.addGroundServicePersonel)
+
 router.post('/cabin-personels',controller.addCabinPersonel)
 
-router.get('/:id',controller.getById)
+router.post('/cabin-crews',controller.addCabinCrew)
+
+router.post('/ground-service-crews',controller.addGroundServiceCrew)
 
 router.put('/:id',controller.update)
 

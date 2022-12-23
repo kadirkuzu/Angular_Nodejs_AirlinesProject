@@ -11,6 +11,7 @@ export class TableComponent implements OnInit {
   @Input() tableName!:string
   @Input() typeName!:string
   @Input() deleteUrl?:string
+  @Input() modalId?:string
 
   columns:string[] = []
 

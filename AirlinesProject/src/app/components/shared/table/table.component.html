@@ -20,10 +20,17 @@
     <tr mat-row *matRowDef="let row; columns: columns"></tr>
 </table>
 <ng-template #notFound>
-  <div  class="alert alert-secondary  mt-3" role="alert">
-    {{tableName}} could not be found. You can add <span [routerLink]="'/add-'+typeName" class="router-text">here</span>
+  <div  class="alert alert-secondary  mt-2" role="alert">
+    {{tableName}} could not be found. You can add 
+    <span *ngIf="!modalId" [routerLink]="'/add-'+typeName" class="router-text">here</span>
+    <span *ngIf="modalId" data-bs-toggle="modal" [attr.data-bs-target]="'#'+modalId" class="router-text">here</span>
   </div>
 </ng-template>
-<p class="mt-3" *ngIf="list.length">
+<p class="mt-3" *ngIf="list.length&&!modalId">
   You can add {{typeName}} <span [routerLink]="'/add-'+typeName" class="router-text">here</span>
 </p>
+<p class="mt-3" *ngIf="list.length&&modalId">
+  You can add {{typeName}} <span data-bs-toggle="modal" [attr.data-bs-target]="'#'+modalId" class="router-text">here</span>
+</p>
+
+

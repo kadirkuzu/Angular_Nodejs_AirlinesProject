@@ -102,13 +102,14 @@ CREATE TABLE "CabinCrews"
 (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	"pilotId" INT NOT NULL,
+	name TEXT NOT NULL,
 	CONSTRAINT fk_pilot FOREIGN KEY ("pilotId") REFERENCES "Pilots"(id)
 );
 
 CREATE TABLE "CabinPersonels"
 (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	"crewId" INT,
+	"crewId" INT NOT NULL,
 	CONSTRAINT fk_crewId FOREIGN KEY ("crewId") REFERENCES "CabinCrews"(id)
 	
 ) INHERITS ("Employees");
@@ -127,13 +128,14 @@ CREATE TABLE "GroundServicesCrews"
 (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	"gsCheifId" INT NOT NULL,
+	name TEXT NOT NULL,
 	CONSTRAINT fk_chief FOREIGN KEY ("gsCheifId") REFERENCES "GroundServicesChiefs"(id)
 );
 
 CREATE TABLE "GroundServicesPersonels"
 (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	"crewId" INT,
+	"crewId" INT NOT NULL,
 	CONSTRAINT fk_crewId FOREIGN KEY ("crewId") REFERENCES "GroundServicesCrews"(id)
 ) INHERITS ("Employees");
 
@@ -162,13 +164,13 @@ CREATE TABLE "Airports"
 CREATE TABLE "Routes"
 (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	"startingAirportId" INT NOT NULL,
-	"finalAirportId" INT NOT NULL,
+	"departureAirportId" INT NOT NULL,
+	"arrivalAirportId" INT NOT NULL,
 	"flightTime" INT NOT NULL,
-	check("startingAirportId" != "finalAirportId"),
-	UNIQUE ("startingAirportId", "finalAirportId"),
-	CONSTRAINT fk_starting_airport_id FOREIGN KEY ("startingAirportId") REFERENCES "Airports"(id),
-	CONSTRAINT fk_final_airport_id FOREIGN KEY ("finalAirportId") REFERENCES "Airports"(id)
+	check("departureAirportId" != "arrivalAirportId"),
+	UNIQUE ("departureAirportId", "arrivalAirportId"),
+	CONSTRAINT fk_starting_airport_id FOREIGN KEY ("departureAirportId") REFERENCES "Airports"(id),
+	CONSTRAINT fk_final_airport_id FOREIGN KEY ("arrivalAirportId") REFERENCES "Airports"(id)
 );
 
 
@@ -187,29 +189,15 @@ CREATE TABLE "Flights"
 	CONSTRAINT fk_route FOREIGN KEY ("routeId") REFERENCES "Routes"(id)
 );
 
-
---ORDER
-
-CREATE TABLE "Payments"
-(
-	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	amount INT NOT NULL,
-	"paymentType" VARCHAR(4) NOT NULL,
-	check("paymentType" = 'CASH' OR "paymentType" = 'CARD'),
-	"pointsEarned" INT NOT NULL DEFAULT 0
-);
-
 CREATE TABLE "Trips"
 (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	"flightId" INT NOT NULL,
 	"customerId" INT NOT NULL,
-	"paymentId" INT NOT NULL,
 	"tripRating" INT NOT NULL,
 	check("tripRating" >= 0 and "tripRating" <= 5),
 	CONSTRAINT fk_flight FOREIGN KEY ("flightId") REFERENCES "Flights"(id),
-	CONSTRAINT fk_customer FOREIGN KEY ("customerId") REFERENCES "Customers"(id),
-	CONSTRAINT fk_payment FOREIGN KEY ("paymentId") REFERENCES "Payments"(id)
+	CONSTRAINT fk_customer FOREIGN KEY ("customerId") REFERENCES "Customers"(id)
 	
 );
 

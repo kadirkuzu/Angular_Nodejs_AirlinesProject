@@ -1,1 +1,15 @@
-<p>ground-services-crews-page works!</p>
+<div class="main">
+    <div class="row">
+        <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6"  *ngFor="let crew of crewList">
+            <app-crew [crew]="crew" [useFor]="'groundServiceCrews'"></app-crew>
+        </div>
+    </div>
+    <div *ngIf="crewList.length==0">
+        <div  class="alert alert-secondary  mt-3" role="alert">
+            Cabin Crews could not be found. You can add <span data-bs-toggle="modal" data-bs-target="#addCrewModalgroundServiceCrews" class="router-text">here</span>
+          </div>
+    </div>
+    <p class="mt-3" *ngIf="crewList.length">
+        You can add ground service crews <span data-bs-toggle="modal" data-bs-target="#addCrewModalgroundServiceCrews" class="router-text">here</span>
+      </p>
+</div>

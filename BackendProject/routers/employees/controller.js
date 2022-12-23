@@ -22,6 +22,14 @@ export const getCabinPersonels = (req,res) =>{
     })
 }
 
+export const getCabinPersonelsWithCrewId = (req,res) =>{
+    const id = req.params.id ;
+    pool.query(queries.getCabinPersonelsWithCrewId,[id],(error,results) => {
+        if (error) res.status(404).json({message:error.message})
+        else res.status(200).json(results.rows)
+    })
+}
+
 export const getGroundServicePersonels = (req,res) =>{
     pool.query(queries.getGroundServicePersonels,(error,results) => {
         if (error) res.status(404).json({message:error.message})
@@ -29,12 +37,25 @@ export const getGroundServicePersonels = (req,res) =>{
     })
 }
 
-export const getById = (req,res) =>{
+export const getGroundServicePersonelsWithCrewId = (req,res) =>{
     const id = req.params.id ;
-    pool.query(queries.getById,[id],(error,results) => {
+    pool.query(queries.getGroundServicePersonelsWithCrewId,[id],(error,results) => {
         if (error) res.status(404).json({message:error.message})
-        else if(!results.rows.length) res.status(404).json({message:"Airport not found."})
-        else res.status(200).json(results.rows[0])
+        else res.status(200).json(results.rows)
+    })
+}
+
+export const getCabinCrews = (req,res) =>{
+    pool.query(queries.getCabinCrews,(error,results) => {
+        if (error) res.status(404).json({message:error.message})
+        else res.status(200).json(results.rows)
+    })
+}
+
+export const getGroundServiceCrews = (req,res) =>{
+    pool.query(queries.getGroundServiceCrews,(error,results) => {
+        if (error) res.status(404).json({message:error.message})
+        else res.status(200).json(results.rows)
     })
 }
 
@@ -67,12 +88,12 @@ export const addGroundServiceChief = (req,res) =>{
 }
 
 export const addGroundServicePersonel = (req,res) =>{
-    const {email,dob,name,phone,nationality,salary} = req.body
+    const {email,dob,name,phone,nationality,salary,crewId} = req.body
     pool.query(queries.checkEmployeeExist,[email,phone],(error,results)=>{
         if(error) res.status(404).json({message:error.message})
         else if(results.rows.length) res.status(404).json({message:"Employee already exists."})
         else {
-            pool.query(queries.addGroundServicePersonel,[email,dob,name,phone,nationality,salary],(error,results)=>{
+            pool.query(queries.addGroundServicePersonel,[email,dob,name,phone,nationality,salary,crewId],(error,results)=>{
                 if(error) res.status(404).json({message:error.message})
                 else res.status(201).json(results.rows)
             })
@@ -81,12 +102,40 @@ export const addGroundServicePersonel = (req,res) =>{
 }
 
 export const addCabinPersonel = (req,res) =>{
-    const {email,dob,name,phone,nationality,salary} = req.body
+    const {email,dob,name,phone,nationality,salary,crewId} = req.body
     pool.query(queries.checkEmployeeExist,[email,phone],(error,results)=>{
         if(error) res.status(404).json({message:error.message})
         else if(results.rows.length) res.status(404).json({message:"Employee already exists."})
         else {
-            pool.query(queries.addCabinPersonel,[email,dob,name,phone,nationality,salary],(error,results)=>{
+            pool.query(queries.addCabinPersonel,[email,dob,name,phone,nationality,salary,crewId],(error,results)=>{
+                if(error) res.status(404).json({message:error.message})
+                else res.status(201).json(results.rows)
+            })
+        }
+    })
+}
+
+export const addCabinCrew = (req,res) =>{
+    const {name,pilotId} = req.body
+    pool.query(queries.checkCabinCrewExist,[name],(error,results)=>{
+        if(error) res.status(404).json({message:error.message})
+        else if(results.rows.length) res.status(404).json({message:"Cabin crew already exists."})
+        else {
+            pool.query(queries.addCabinCrew,[name,pilotId],(error,results)=>{
+                if(error) res.status(404).json({message:error.message})
+                else res.status(201).json(results.rows)
+            })
+        }
+    })
+}
+
+export const addGroundServiceCrew = (req,res) =>{
+    const {name,gsCheifId} = req.body
+    pool.query(queries.checkGroundServiceCrewExist,[name],(error,results)=>{
+        if(error) res.status(404).json({message:error.message})
+        else if(results.rows.length) res.status(404).json({message:"Ground service crew already exists."})
+        else {
+            pool.query(queries.addGroundServiceCrew,[name,gsCheifId],(error,results)=>{
                 if(error) res.status(404).json({message:error.message})
                 else res.status(201).json(results.rows)
             })

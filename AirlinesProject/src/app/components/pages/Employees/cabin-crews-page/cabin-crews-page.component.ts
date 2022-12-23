@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EmployeeService } from 'src/app/services/employees.service';
 
 @Component({
   selector: 'app-cabin-crews-page',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cabin-crews-page.component.scss']
 })
 export class CabinCrewsPageComponent implements OnInit {
-
-  constructor() { }
+  crewList:any = []
+  constructor(private employeeService:EmployeeService) { }
 
   ngOnInit(): void {
+    this.getCabinCrews()
+  }
+
+  getCabinCrews(){
+    this.employeeService.getAll("cabin-crews").subscribe(data=>{
+      this.crewList = data
+    })
   }
 
 }

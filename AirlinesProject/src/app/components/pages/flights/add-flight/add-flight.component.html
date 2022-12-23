@@ -1,0 +1,75 @@
+<div class="row justify-content-center w-100">
+    <div class="main col-11 col-xs-11 col-sm-11 col-md-11 col-lg-8 col-xl-8">
+        <form [formGroup]="addFlightForm">
+            <div class="mb-3">
+                <label class="form-label">Aircraft</label>
+                <ng-select formControlName="aircraftId" placeholder="Select aircraft">
+                    <ng-option *ngFor="let aircraft of aircrafts" [value]="aircraft.id">
+                        {{aircraft.aircraftName+"("+aircraft.modelName+")"}}
+                    </ng-option>
+                    <ng-template ng-notfound-tmp>
+                        <div class="ng-option disabled">
+                            No any aircraft found . <span class="router-text" (click)="routeTo('add-aircraft')">Click to add aircraft</span>
+                        </div>
+                      </ng-template>
+                </ng-select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Cabin Crew</label>
+                <ng-select formControlName="CCrewId" placeholder="Select cabin crew">
+                    <ng-option *ngFor="let crew of cabinCrews" [value]="crew.id">
+                        {{crew.name+" (Pilot name :"+crew.pilotName+")"}}
+                    </ng-option>
+                    <ng-template ng-notfound-tmp>
+                        <div class="ng-option disabled">
+                            No any cabin crew found . <span class="router-text" (click)="routeTo('add-employee')">Click to add cabin crew</span>
+                        </div>
+                      </ng-template>
+                </ng-select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Ground Services Crew</label>
+                <ng-select formControlName="GSCrewId" placeholder="Select ground services crew">
+                    <ng-option *ngFor="let crew of groundServicesCrews" [value]="crew.id">
+                        {{crew.name+" (Chief name :"+crew.chiefName+")"}}
+                    </ng-option>
+                    <ng-template ng-notfound-tmp>
+                        <div class="ng-option disabled">
+                            No any ground services crew found . <span class="router-text" (click)="routeTo('add-employee')">Click to add ground services crew</span>
+                        </div>
+                      </ng-template>
+                </ng-select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Routes</label>
+                <ng-select formControlName="routeId" placeholder="Select route" (open)="getRoutes()">
+                    <ng-option *ngFor="let route of routes" [value]="route.id">
+                        {{route.departureAirportName|titlecase}} -> {{route.arrivalAirportName|titlecase}}
+                    </ng-option>
+                    <ng-template ng-notfound-tmp>
+                        <div class="ng-option disabled">
+                            No any route found . <span class="router-text" data-bs-toggle="modal" data-bs-target="#addRouteModal">Click to add route</span>
+                        </div>
+                      </ng-template>
+                </ng-select>
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Flight Date</label>
+                <div>
+                    <mat-form-field class="w-100" [floatLabel]="'never'">
+                        <mat-label>Flight Date</mat-label>
+                        <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" [formControlName]="'flightDate'"
+                           [min]="minDate">
+                        <mat-datepicker-toggle matSuffix matPrefix [for]="$any(picker)"></mat-datepicker-toggle>
+                        <ngx-mat-datetime-picker #picker [showSpinners]="false" [showSeconds]="true"></ngx-mat-datetime-picker>
+                     </mat-form-field>
+                </div>
+            </div>
+            <div class="text-end">
+                <button class="btn btn-danger" style="margin-right: 20px;" (click)="discard()">Discard changes</button>
+                <button class="btn btn-primary" [disabled]="addFlightForm.invalid" (click)="add()">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+

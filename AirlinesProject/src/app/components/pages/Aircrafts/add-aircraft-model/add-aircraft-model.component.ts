@@ -28,6 +28,10 @@ export class AddAircraftModelComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.getManufacturers()
+  }
+
+  getManufacturers(){
     this.companyService.getAll("Manufacturers").subscribe(data=>{
       this.manufacturerList = data
     })
@@ -45,6 +49,8 @@ export class AddAircraftModelComponent implements OnInit {
       this.discard()
     },
     error:(e)=>{
+      console.log(e.error);
+      
       this.toastr.error(e.error.message,"Error")
     }
   })

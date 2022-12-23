@@ -1,0 +1,21 @@
+<div class="accordion accordion-flush" id="accordionFlush{{crew.id+useFor}}">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed accordion-toggle" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#flush-collapse'+crew.id+useFor" aria-expanded="false" aria-controls="flush-collapseOne">
+            {{crew.name}}
+            </button>
+        </h2>
+        <div id="flush-collapse{{crew.id+useFor}}" class="accordion-collapse collapse mt-1" aria-labelledby="flush-headingOne" [attr.data-bs-parent]="'#accordionFlush'+crew.id+useFor">
+            <div class="row">
+                <div class="col-3">{{useFor == "cabinCrews" ? "Pilot :" : "Ground Service Chief :"}}</div>
+                <div class="col-9">{{firstPersonel |titlecase}}</div>
+                <div class="col-3" *ngIf="personelList.length">Personel List :</div>
+                <div class="col-9" *ngFor="let personel of personelList">
+                    {{personel.name|titlecase}} ({{personel.email|titlecase}})
+                </div>
+                <div class="col-12" *ngIf="!personelList.length">You have not added personnel to this team </div>
+            </div>
+        </div>
+    </div>
+</div>
+

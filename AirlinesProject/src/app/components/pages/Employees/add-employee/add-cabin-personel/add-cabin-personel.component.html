@@ -2,6 +2,19 @@
     <div>
         <form [formGroup]="addCabinPersonelForm">
             <div class="mb-3">
+                <label class="form-label">Crew Name</label>
+                <ng-select formControlName="crewId" placeholder="Select crew" (open)="getCrews()">
+                    <ng-option *ngFor="let crew of crewList" [value]="crew.id">
+                        {{crew.name+"(Pilot Name : "+crew.pilotName+")"}}
+                    </ng-option>
+                    <ng-template ng-notfound-tmp>
+                        <div class="ng-option disabled">
+                            No any crew found . <span data-bs-toggle="modal" data-bs-target="#addCrewModalcabinCrews" class="router-text" >Click to add crew</span>
+                        </div>
+                      </ng-template>
+                </ng-select>
+            </div>
+            <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <div>
                     <input [ngClass]="{ 'is-invalid': email?.invalid   && (email?.dirty || email?.touched)}" formControlName="email"

@@ -1,0 +1,23 @@
+<div class="accordion accordion-flush" id="accordionFlight{{flight.id}}">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed accordion-toggle" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#flush-collapsef'+flight.id" aria-expanded="false" aria-controls="flush-collapseOne">
+            Flight {{index+1}}
+            </button>
+        </h2>
+        <div id="flush-collapsef{{flight.id}}" class="accordion-collapse collapse mt-1" aria-labelledby="flush-headingOne" [attr.data-bs-parent]="'#accordionFlight'+flight.id">
+            <div class="row">
+                <div class="col-5">Departure Airport :</div>
+                <div class="col-7 fw-bold">{{flight.departureAirportName|titlecase}} ({{flight.departureAirportCode|titlecase}})</div>
+                <div class="col-5">Arrival Airport :</div>
+                <div class="col-7 fw-bold">{{flight.arrivalAirportName|titlecase}} ({{flight.arrivalAirportCode|titlecase}})</div>
+                <div class="col-5">Cabin Crew Name :</div>
+                <div class="col-7 fw-bold">{{flight.cabinCrewName}}</div>
+                <div class="col-5">Ground Service Crew Name :</div>
+                <div class="col-7 fw-bold">{{flight.groundServiceCrewName}}</div>
+                <div class="col-5">Flight Date :</div>
+                <div class="col-7 fw-bold">{{flight.flightDate | date:"EEEE, MMMM d, y, h:mm"}}</div>
+            </div>
+        </div>
+    </div>
+</div>

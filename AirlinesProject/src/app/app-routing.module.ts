@@ -18,9 +18,8 @@ import { PlaneOwnersPageComponent } from './components/pages/Companies/plane-own
 import { AddCustomerComponent } from './components/pages/Customers/add-customer/add-customer.component';
 import { CustomerDetailComponent } from './components/pages/Customers/customer-detail/customer-detail.component';
 import { CustomersPageComponent } from './components/pages/Customers/customers-page/customers-page.component';
-import { FlightsComponent } from './components/pages/Customers/flights/flights.component';
-import { PaymentsComponent } from './components/pages/Customers/payments/payments.component';
-import { RoutesPageComponent } from './components/pages/Customers/routes-page/routes-page.component';
+import { FlightsComponent } from './components/pages/flights/flights.component';
+import { RoutesPageComponent } from './components/pages/airports-page/routes-page/routes-page.component';
 import { TripsComponent } from './components/pages/Customers/trips/trips.component';
 import { AddEmployeeComponent } from './components/pages/Employees/add-employee/add-employee.component';
 import { CabinCrewsPageComponent } from './components/pages/Employees/cabin-crews-page/cabin-crews-page.component';
@@ -32,6 +31,7 @@ import { PilotsPageComponent } from './components/pages/Employees/pilots-page/pi
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
 import { LoginGuard } from './guards/login.guard';
 import { LogoutGuard } from './guards/logout.guard';
+import { AddFlightComponent } from './components/pages/flights/add-flight/add-flight.component';
 
 const routes: Routes = [
   {path:'',component:HomePageComponent},
@@ -42,6 +42,9 @@ const routes: Routes = [
   {path:'airports',component:AirportsPageComponent,canActivate:[LoginGuard]},
   {path:'add-airport',component:AddAirportComponent,canActivate:[LoginGuard]},
   {path:'airports/:id',component:AirportDetailComponent,canActivate:[LoginGuard]},
+  {path:'routes',component:RoutesPageComponent,canActivate:[LoginGuard]},
+  {path:'flights',component:FlightsComponent,canActivate:[LoginGuard]},
+  {path:'add-flight',component:AddFlightComponent,canActivate:[LoginGuard]},
   {path:'companies/airport-managements',component:AirportManagementsPageComponent,canActivate:[LoginGuard]},
   {path:'companies/ground-services',component:GroundServicesPageComponent,canActivate:[LoginGuard]},
   {path:'companies/manufacturers',component:ManufecturersPageComponent,canActivate:[LoginGuard]},
@@ -57,9 +60,6 @@ const routes: Routes = [
   {path:'employees/ground-services-chiefs',component:GroundServicesChiefsPageComponent,canActivate:[LoginGuard]},
   {path:'customers',component:CustomersPageComponent,canActivate:[LoginGuard]},
   {path:'add-customer',component:AddCustomerComponent,canActivate:[LoginGuard]},
-  {path:'customers/flights',component:FlightsComponent,canActivate:[LoginGuard]},
-  {path:'customers/payments',component:PaymentsComponent,canActivate:[LoginGuard]},
-  {path:'customers/routes',component:RoutesPageComponent,canActivate:[LoginGuard]},
   {path:'customers/trips',component:TripsComponent,canActivate:[LoginGuard]},
   {path:'customer/:id',component:CustomerDetailComponent},
   {path:'login',component:LoginComponent,canActivate:[LogoutGuard]},

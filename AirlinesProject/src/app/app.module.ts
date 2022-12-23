@@ -15,7 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/header/login/login.component';
 import { RegisterComponent } from './components/header/register/register.component';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -36,9 +36,8 @@ import { GroundServicesPersonelsPageComponent } from './components/pages/Employe
 import { CustomersPageComponent } from './components/pages/Customers/customers-page/customers-page.component';
 import { AddCustomerComponent } from './components/pages/Customers/add-customer/add-customer.component';
 import { TripsComponent } from './components/pages/Customers/trips/trips.component';
-import { PaymentsComponent } from './components/pages/Customers/payments/payments.component';
-import { FlightsComponent } from './components/pages/Customers/flights/flights.component';
-import { RoutesPageComponent } from './components/pages/Customers/routes-page/routes-page.component';
+import { FlightsComponent } from './components/pages/flights/flights.component';
+import { RoutesPageComponent } from './components/pages/airports-page/routes-page/routes-page.component';
 import { CustomerDetailComponent } from './components/pages/Customers/customer-detail/customer-detail.component';
 import { AddAircraftComponent } from './components/pages/Aircrafts/add-aircraft/add-aircraft.component';
 import { AddAircraftModelComponent } from './components/pages/Aircrafts/add-aircraft-model/add-aircraft-model.component';
@@ -49,6 +48,12 @@ import { AddPilotComponent } from './components/pages/Employees/add-employee/add
 import { AddCabinPersonelComponent } from './components/pages/Employees/add-employee/add-cabin-personel/add-cabin-personel.component';
 import { AddGroundServicePersonelComponent } from './components/pages/Employees/add-employee/add-ground-service-personel/add-ground-service-personel.component';
 import { AddGroundServiceChiefComponent } from './components/pages/Employees/add-employee/add-ground-service-chief/add-ground-service-chief.component';
+import { AddFlightComponent } from './components/pages/flights/add-flight/add-flight.component';
+import { AddTripComponent } from './components/pages/Customers/trips/add-trip/add-trip.component';
+import { MatButtonModule } from '@angular/material/button';
+import { NgxMatDatetimePickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { FlightComponent } from './components/pages/flights/flight/flight.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {
   showMaskTyped: false,
@@ -79,7 +84,6 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {
     CustomersPageComponent,
     AddCustomerComponent,
     TripsComponent,
-    PaymentsComponent,
     FlightsComponent,
     RoutesPageComponent,
     CustomerDetailComponent,
@@ -92,6 +96,9 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {
     AddCabinPersonelComponent,
     AddGroundServicePersonelComponent,
     AddGroundServiceChiefComponent,
+    AddFlightComponent,
+    AddTripComponent,
+    FlightComponent,
   ],
   imports: [
     BrowserModule,
@@ -110,10 +117,15 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {
     BrowserAnimationsModule,
     NgxMaskModule.forRoot(options),
     MatNativeDateModule,
+    MatRippleModule, 
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectCountryModule.forRoot('en'),
+    MatButtonModule,
+    NgxMatDatetimePickerModule,
+    MatMomentDateModule,
+    NgxMatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -15,6 +15,10 @@ export class EmployeeService {
     return this.http.get<any[]>(environment.api + `employees/${workArea}`);
   }
 
+  getAllByCrewId(workArea:string,crewId:string): Observable<any[]> {
+    return this.http.get<any[]>(environment.api + `employees/${workArea}/${crewId}`);
+  }
+
   get(workArea:string,id:string): Observable<any> {
     return this.http.get<any>(environment.api + `employees/${workArea}/${id}`);
   }

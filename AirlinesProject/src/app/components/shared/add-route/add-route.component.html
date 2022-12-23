@@ -1,0 +1,62 @@
+<div class="modal fade" id="addRouteModal" tabindex="-1" aria-labelledby="addRouteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="addRouteLabel">Add Route</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div>
+                <form [formGroup]="addRouteForm">
+                    <div class="mb-3">
+                        <label class="form-label">Departure Airport</label>
+                        <ng-select formControlName="departureAirportId" placeholder="Select departure airport" (open)="getAirports()" >
+                            <ng-option *ngFor="let airport of airports" [value]="airport.id">
+                                {{airport.name}} ({{airport.code}})
+                            </ng-option>
+                            <ng-template ng-notfound-tmp>
+                                <div class="ng-option disabled">
+                                    No any airport found . <span class="router-text" data-bs-dismiss="modal" (click)="navigate()">Click to add airport</span>
+                                </div>
+                            </ng-template>
+                        </ng-select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Arrival Airport</label>
+                        <ng-select formControlName="arrivalAirportId" placeholder="Select arrival airport" (open)="getAirports()">
+                            <ng-option *ngFor="let airport of airports" [value]="airport.id">
+                                {{airport.name}} ({{airport.code}})
+                            </ng-option>
+                            <ng-template ng-notfound-tmp>
+                                <div class="ng-option disabled">
+                                    No any airport found . <span class="router-text" data-bs-dismiss="modal" (click)="navigate()">Click to add airport</span>
+                                </div>
+                            </ng-template>
+                        </ng-select>
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col-6">
+                            <label for="hour" class="form-label">Hour</label>
+                            <div>
+                                <input [ngClass]="{ 'is-invalid': hour?.invalid   && (hour?.dirty || hour?.touched)}"
+                                 formControlName="hour" type="number" class="form-control" id="hour" placeholder="Hour">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label for="minute" class="form-label">Minute</label>
+                            <div>
+                                <input [ngClass]="{ 'is-invalid': minute?.invalid   && (minute?.dirty || minute?.touched)}"
+                                formControlName="minute" type="number" class="form-control" id="minute" placeholder="Minute">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger" style="margin-right: 20px;" data-bs-dismiss="modal" (click)="discard()">Close</button>
+            <button class="btn btn-primary" data-bs-dismiss="modal" [disabled]="isDisabled()" (click)="add()">Add</button>
+        </div>
+      </div>
+    </div>
+</div>
