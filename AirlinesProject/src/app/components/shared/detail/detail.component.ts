@@ -6,10 +6,12 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent implements OnInit {
-  @Input() typeArray!:{name:string,value:string}[]
+  @Input() typeArray!:{name:string,value:string,typeOf?:string}[]
   @Input() element!:any
   @Input() title!:string
   @Input() modalId!:string
+  @Input() fullScreen?:boolean
+  @Input() col?:string[]
   constructor() { }
 
   ngOnInit(): void {

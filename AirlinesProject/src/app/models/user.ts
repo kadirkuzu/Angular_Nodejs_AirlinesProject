@@ -6,3 +6,16 @@ export interface User{
     phone:string
     nationality:string
 }
+
+export interface UserInformation{
+    customerCount: number
+    dob: Date
+    email: string
+    id: number
+    mostReferencedCustomer: string
+    name: string
+    nationality: string
+    phone: string
+    totalPayments: number
+    tripCount: number
+}

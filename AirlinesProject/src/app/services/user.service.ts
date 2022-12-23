@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
 import { Observable, } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { User } from '../models/user';
+import { User, UserInformation } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +25,8 @@ export class UserService {
     return this.http.post<User>(environment.api + `users/register`,user);
   }
 
-  get(id:number): Observable<User> {
-    return this.http.get<User>(environment.api + `users/${id}`);
+  get(id:number): Observable<UserInformation> {
+    return this.http.get<UserInformation>(environment.api + `users/${id}`);
   }
   
 }

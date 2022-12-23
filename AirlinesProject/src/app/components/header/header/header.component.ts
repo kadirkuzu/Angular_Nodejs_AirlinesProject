@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
 
   logOut(){
     localStorage.removeItem("loggedInId")
+    localStorage.removeItem("loggedInName")
     this.router.navigate(["/login"])
     this.userService.isLoggedIn = false
   }

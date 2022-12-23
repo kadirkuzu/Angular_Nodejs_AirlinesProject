@@ -1,15 +1,21 @@
-<div class="row justify-content-center w-100">
-    <div class="main login col-11 col-xs-11 col-sm-11 col-md-8 col-lg-8 col-xl-8" >
+<div class="row justify-content-center w-100" *ngIf="element&&typeArray">
+    <div [ngClass]="!fullScreen ? 'main login col-11 col-xs-11 col-sm-11 col-md-8 col-lg-8 col-xl-8':''" >
         <div class="title">{{title |titlecase}}</div>
         <div class="row mt-2" *ngFor="let type of typeArray;index as i">
-            <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="col-12 col-xs-12 col-sm-12 col-md-6" [ngClass]="col ? col[0] : 'col-lg-4 col-xl-4'">
                 {{type.name}} :
             </div>
-            <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-8 col-xl-8 fw-bold">
-                {{element[type.value]}}
+            <div class="col-12 col-xs-12 col-sm-12 col-md-6 fw-bold" [ngClass]="col ? col[1] : 'col-lg-8 col-xl-8 '" *ngIf="type.typeOf!='date'&&type.typeOf!='number'">
+                {{element[type.value] ? (element[type.value] | titlecase) : "Not found"}}
+            </div>
+            <div class="col-12 col-xs-12 col-sm-12 col-md-6 fw-bold" [ngClass]="col ? col[1] : 'col-lg-8 col-xl-8'" *ngIf="type.typeOf=='date'">
+                {{element[type.value] | date : 'dd MMMM y' }}
+            </div>
+            <div class="col-12 col-xs-12 col-sm-12 col-md-6 fw-bold" [ngClass]="col ? col[1] : 'col-lg-8 col-xl-8'" *ngIf="type.typeOf=='number'">
+                {{element[type.value] ? element[type.value] : 0}}
             </div>
         </div>
-        <div class="mt-2 col-12 text-end">
+        <div class="mt-2 col-12 text-end" *ngIf="modalId">
             <button class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#'+modalId">Click to update</button>
         </div>
     </div>

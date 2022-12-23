@@ -1,1 +1,38 @@
-<p>my-page works!</p>
+<div class="main">
+    <div class="row justify-content-around">
+        <div class="main col-5">
+            <div class="accordion accordion-flush" id="userInfoAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="userInfoAccordion-headingOne">
+                        <button class="accordion-button collapsed accordion-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#userInfoAccordion-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            User Informations
+                        </button>
+                    </h2>
+                    <div id="userInfoAccordion-collapseOne" class="accordion-collapse collapse" aria-labelledby="userInfoAccordion-headingOne" data-bs-parent="#userInfoAccordion">
+                        <div class="accordion-body">
+                            <div class="row">
+                                    <app-detail [fullScreen]="true" [element]="userInfo" [typeArray]="typeArray"></app-detail>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main col-5">
+            <div class="accordion accordion-flush" id="otherInfoAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="otherInfoAccordion-headingOne">
+                        <button class="accordion-button collapsed accordion-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#otherInfoAccordion-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            Other Informations
+                        </button>
+                    </h2>
+                    <div id="otherInfoAccordion-collapseOne" class="accordion-collapse collapse" aria-labelledby="otherInfoAccordion-headingOne" data-bs-parent="#otherInfoAccordion">
+                        <div class="accordion-body">
+                            <app-detail [fullScreen]="true" [element]="userInfo" [typeArray]="typeArray2" [col]="['col-lg-5 col-xl-5','col-lg-7 col-xl-7']"></app-detail>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
