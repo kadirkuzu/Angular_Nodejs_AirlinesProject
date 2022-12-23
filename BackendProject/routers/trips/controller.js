@@ -18,12 +18,12 @@ export const getById = (req,res) =>{
 }
 
 export const add = (req,res) =>{
-    const {flightId,customerId,tripRating} = req.body
+    const {flightId,customerId,tripRating,amount} = req.body
     pool.query(queries.checkTripExist,[flightId,customerId],(error,results)=>{
         if(error) res.status(404).json({message:error.message})
         else if(results.rows.length) res.status(404).json({message:"Trip already exists."})
         else {
-            pool.query(queries.add,[flightId,customerId,tripRating],(error,results)=>{
+            pool.query(queries.add,[flightId,customerId,tripRating,amount],(error,results)=>{
                 if(error) res.status(404).json({message:error.message})
                 else res.status(201).json(results.rows)
             })

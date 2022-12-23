@@ -195,6 +195,8 @@ CREATE TABLE "Trips"
 	"flightId" INT NOT NULL,
 	"customerId" INT NOT NULL,
 	"tripRating" INT NOT NULL,
+	amount INT NOT NULL,
+	check(amount > 0),
 	check("tripRating" >= 0 and "tripRating" <= 5),
 	CONSTRAINT fk_flight FOREIGN KEY ("flightId") REFERENCES "Flights"(id),
 	CONSTRAINT fk_customer FOREIGN KEY ("customerId") REFERENCES "Customers"(id)

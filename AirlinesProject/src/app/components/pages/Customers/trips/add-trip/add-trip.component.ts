@@ -24,12 +24,14 @@ export class AddTripComponent implements OnInit {
   addTripForm = new FormGroup({
     flightId: new FormControl(undefined, [Validators.required]),
     customerId: new FormControl(undefined, [Validators.required]),
-    tripRating: new FormControl(undefined,[Validators.required,Validators.min(0),Validators.max(5)])
+    tripRating: new FormControl(undefined,[Validators.required,Validators.min(0),Validators.max(5)]),
+    amount: new FormControl(undefined,[Validators.required,Validators.min(0)]),
   })
 
   get flightId() { return this.addTripForm.get('flightId') }
   get customerId() { return this.addTripForm.get('customerId') }
   get tripRating() { return this.addTripForm.get('tripRating') }
+  get amount() { return this.addTripForm.get('amount') }
  
   
   ngOnInit(): void {
