@@ -10,7 +10,7 @@ import { AirportService } from 'src/app/services/airport.service';
 export class AirportsPageComponent implements OnInit {
 
   airports:Airport[] = []
-  displayedColumns: {value:string,name:string}[] = [
+  displayedColumns: {value:string,name:string,typeOf?:string}[] = [
     {
       value:'name',
       name: 'Name'
@@ -29,11 +29,13 @@ export class AirportsPageComponent implements OnInit {
     },
     {
       value:'planeCapacity',
-      name: 'Plane Capacity'
+      name: 'Plane Capacity',
+      typeOf:'number'
     },
     {
       value:'yearBuilt',
-      name: 'Year Built'
+      name: 'Year Built',
+      typeOf:'number'
     },
   ];
   isLoading:boolean = true

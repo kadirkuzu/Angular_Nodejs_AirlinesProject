@@ -11,14 +11,15 @@ import { AircraftService } from 'src/app/services/aircraft.service';
 export class AircraftDetailComponent implements OnInit {
 
   aircraft?:Aircraft
-  typeArray:{name:string,value:string}[] = [
+  typeArray:{name:string,value:string,typeOf?:string}[] = [
     {
       value:'aircraftName',
       name: 'Aircraft Name'
     },
     {
       value:'yearBought',
-      name: 'Year Bought'
+      name: 'Year Bought',
+      typeOf:'number'
     },
     {
       value:'ownerName',

@@ -10,7 +10,7 @@ import { AirportService } from 'src/app/services/airport.service';
 })
 export class AirportDetailComponent implements OnInit {
   airport?:Airport
-  typeArray:{name:string,value:string}[] = [
+  typeArray:{name:string,value:string,typeOf?:string}[] = [
     {
       name:"Name",
       value:"name"
@@ -29,11 +29,13 @@ export class AirportDetailComponent implements OnInit {
     },
     {
       name:"Plane Capacity",
-      value:"planeCapacity"
+      value:"planeCapacity",
+      typeOf:'number'
     },
     {
       name:"Year Built",
-      value:"yearBuilt"
+      value:"yearBuilt",
+      typeOf:'number'
     },
   ]
   constructor(private route:ActivatedRoute,private airportService:AirportService) { }
