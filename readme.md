@@ -61,6 +61,7 @@ SAU 2022-23 Güz dönemi Veri Tabanı Yönetim Sitemleri dersi Projesi.
 * Manifacturers(**id: int**, name: string, country: string, city: string, contactName: string)
 * PlaneOwners(**id: int**, name: string, country: string, city: string, contactName: string)
 * AirportManagements(**id: int**, name: string, country: string, city: string, contactName: string)
+* GroundServices(**id: int**, name: string, country: string, city: string, contactName: string)
 
 * AircraftModels(**id: int**, **manifacturerId: int**, modelName: string, capacity: int)
 * Aircrafts(**id: int**, **ownerId: int**, **modelId: int**, aircraftName: string, yearBought: int)
@@ -366,9 +367,9 @@ LANGUAGE plpgsql;
 ```sql
 
 INSERT INTO public."Manufacturers" (name, country, city, "contactName", "contactNumber", id) OVERRIDING SYSTEM VALUE VALUES ('Wright inc', 'US', 'Boston', 'juliver', '5435435345', 1);
-INSERT INTO public."Manufacturers" (name, country, city, "contactName", "contactNumber", id) OVERRIDING SYSTEM VALUE VALUES ('tusas inc', 'TR', 'Istanbul', 'ali', '5435439345', 1);
+INSERT INTO public."Manufacturers" (name, country, city, "contactName", "contactNumber", id) OVERRIDING SYSTEM VALUE VALUES ('tusas inc', 'TR', 'Istanbul', 'ali', '5435439345', 2);
 INSERT INTO public."PlaneOwners" (name, country, city, "contactName", "contactNumber", id) OVERRIDING SYSTEM VALUE VALUES ('kardesler ucak', 'TR', 'Ankara', 'mahmut', '5435345345', 1);
-INSERT INTO public."PlaneOwners" (name, country, city, "contactName", "contactNumber", id) OVERRIDING SYSTEM VALUE VALUES ('Air wings', 'US', 'New York', 'jackson', '5435345345', 1);
+INSERT INTO public."PlaneOwners" (name, country, city, "contactName", "contactNumber", id) OVERRIDING SYSTEM VALUE VALUES ('Air wings', 'US', 'New York', 'jackson', '5435345345', 2);
 INSERT INTO public."GroundServices" (name, country, city, "contactName", "contactNumber", id) OVERRIDING SYSTEM VALUE VALUES ('toprak yh.', 'TR', 'istanbul', 'gulsen', '4543534534', 1);
 INSERT INTO public."AirportManagements" (name, country, city, "contactName", "contactNumber", id) OVERRIDING SYSTEM VALUE VALUES ('global mng', 'GB', 'london', 'jason', '4534534543', 1);
 INSERT INTO public."AirportManagements" (name, country, city, "contactName", "contactNumber", id) OVERRIDING SYSTEM VALUE VALUES ('celebi yonetim', 'TR', 'istanbul', 'alihan', '6546564564', 2);
