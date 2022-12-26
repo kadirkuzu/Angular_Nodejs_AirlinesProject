@@ -613,7 +613,7 @@ LANGUAGE plpgsql;
 
 * **Bilgi paneli:**
 
-![diagram](Docs/22-bilgiPaneli.png)
+![diagram](Docs/22-bilgiPanel.png)
 
 * diğer kısımlara ait fotoğraflar için 	`Docs` klasörüne bakabilirsiniz
 
