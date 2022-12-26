@@ -83,7 +83,7 @@ SAU 2022-23 Güz dönemi Veri Tabanı Yönetim Sitemleri dersi Projesi.
 * Trips(**id: int**, **flightId: int**, **customerId: int**, tripRating: int, amount: int)
 ## Crows Foot
 
-![App Screenshot](https://i.hizliresim.com/k2ofg68.png)
+![diagram](Docs/diagram.png)
 
 
 ## Database oluşturma kodu
@@ -580,6 +580,34 @@ $$
 LANGUAGE plpgsql;
 ```
 
+
+## Uygulamadan Bazı Görüntüler
+
+* Ana ekran
+![diagram](Docs/1-anaEkran.png)
+
+* Havalimanları görüntüleme
+![diagram](Docs/2-airportGoruntule.png)
+
+* Şirket ekleme ekranı
+![diagram](Docs/5-sirketEkle.png)
+
+* Rota görüntüleme
+![diagram](Docs/8-rotaGoruntule.png)
+
+* Çalışan ekleme
+![diagram](Docs/17-CalisanEkle.png)
+
+* Yolculuk ekleme
+![diagram](Docs/19-yolculukEkle.png)
+
+* Yolculuk görüntüle
+![diagram](Docs/19-yolculukGoruntule.png)
+
+* Bilgi paneli
+![diagram](Docs/diagram.png)
+
+* diğer kısımlara ait fotoğraflar için 	`Docs` klasörüne bakabilirsiniz
 
 
 
