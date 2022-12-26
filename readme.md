@@ -3,9 +3,18 @@
 
 SAU 2022-23 Güz dönemi Veri Tabanı Yönetim Sitemleri dersi Projesi.
 
+Proje github linki : https://github.com/kadirkuzu/AirlinesProject
+
+* **Hazırlayanlar:**
+- Mustafa Karadeniz G211210066 / 2-A  / mustafa.karadeniz1@ogr.sakarya.edu.tr
+- Ejder Kadir Kuzu  G211210351 / 2-A / ejder.kuzu@ogr.sakarya.edu.tr
+
+* **Dersi verenler:**
+- Prof.Dr. CELAL ÇEKEN
+
 ## Proje Konusu
 
-Özel uçak sahibi şirketlerin uçuşlarına yolcu kabul etmesini sağlayan bir uygulama be bu uygulamaya ait veritabanı.
+Özel uçak sahibi şirketlerin uçuşlarına yolcu kabul etmesini sağlayan bir uygulama ve bu uygulamaya ait veritabanı.
 
 ## İş Kuralları
 * Bir AircraftModel in 1 tane Manifacturer i vardır, bir Manifacturer birden fazla AircraftModel e sahip olabilir
@@ -620,9 +629,4 @@ LANGUAGE plpgsql;
 
 
 
-## Authors
-
-Proje github linki : https://github.com/kadirkuzu/AirlinesProject
-- Mustafa Karadeniz G211210066 / 2-A
-- Ejder Kadir Kuzu  G211210351 / 2-A
 
