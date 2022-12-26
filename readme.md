@@ -583,29 +583,37 @@ LANGUAGE plpgsql;
 
 ## Uygulamadan Bazı Görüntüler
 
-* Ana ekran
+* **Ana ekran:**
+
 ![diagram](Docs/1-anaEkran.png)
 
-* Havalimanları görüntüleme
+* **Havalimanları görüntüleme:**
+
 ![diagram](Docs/2-airportGoruntule.png)
 
-* Şirket ekleme ekranı
+* **Şirket ekleme ekranı:**
+
 ![diagram](Docs/5-sirketEkle.png)
 
-* Rota görüntüleme
+* **Rota görüntüleme:**
+
 ![diagram](Docs/8-rotaGoruntule.png)
 
-* Çalışan ekleme
+* **Çalışan ekleme:**
+
 ![diagram](Docs/17-CalisanEkle.png)
 
-* Yolculuk ekleme
-![diagram](Docs/19-yolculukEkle.png)
+* **Yolculuk ekleme:**
 
-* Yolculuk görüntüle
+![diagram](Docs/21-yolculukEkle.png)
+
+* **Yolculuk görüntüle:**
+
 ![diagram](Docs/19-yolculukGoruntule.png)
 
-* Bilgi paneli
-![diagram](Docs/diagram.png)
+* **Bilgi paneli:**
+
+![diagram](Docs/22-bilgiPaneli.png)
 
 * diğer kısımlara ait fotoğraflar için 	`Docs` klasörüne bakabilirsiniz
 
