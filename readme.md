@@ -365,7 +365,68 @@ LANGUAGE plpgsql;
 ...
 ```sql
 
-insert kodları
+INSERT INTO public."Manufacturers" (name, country, city, "contactName", "contactNumber", id) OVERRIDING SYSTEM VALUE VALUES ('Wright inc', 'US', 'Boston', 'juliver', '5435435345', 1);
+INSERT INTO public."Manufacturers" (name, country, city, "contactName", "contactNumber", id) OVERRIDING SYSTEM VALUE VALUES ('tusas inc', 'TR', 'Istanbul', 'ali', '5435439345', 1);
+INSERT INTO public."PlaneOwners" (name, country, city, "contactName", "contactNumber", id) OVERRIDING SYSTEM VALUE VALUES ('kardesler ucak', 'TR', 'Ankara', 'mahmut', '5435345345', 1);
+INSERT INTO public."PlaneOwners" (name, country, city, "contactName", "contactNumber", id) OVERRIDING SYSTEM VALUE VALUES ('Air wings', 'US', 'New York', 'jackson', '5435345345', 1);
+INSERT INTO public."GroundServices" (name, country, city, "contactName", "contactNumber", id) OVERRIDING SYSTEM VALUE VALUES ('toprak yh.', 'TR', 'istanbul', 'gulsen', '4543534534', 1);
+INSERT INTO public."AirportManagements" (name, country, city, "contactName", "contactNumber", id) OVERRIDING SYSTEM VALUE VALUES ('global mng', 'GB', 'london', 'jason', '4534534543', 1);
+INSERT INTO public."AirportManagements" (name, country, city, "contactName", "contactNumber", id) OVERRIDING SYSTEM VALUE VALUES ('celebi yonetim', 'TR', 'istanbul', 'alihan', '6546564564', 2);
+
+
+INSERT INTO public."AircraftModels" (id, "manufacturerId", "modelName", capacity) OVERRIDING SYSTEM VALUE VALUES (1, 1, 'AIRBUS', 500);
+INSERT INTO public."AircraftModels" (id, "manufacturerId", "modelName", capacity) OVERRIDING SYSTEM VALUE VALUES (2, 1, 'FALCON', 30);
+
+INSERT INTO public."Aircrafts" (id, "ownerId", "modelId", "aircraftName", "yearBought") OVERRIDING SYSTEM VALUE VALUES (1, 1, 1, 'ARBS-1', 2000);
+INSERT INTO public."Aircrafts" (id, "ownerId", "modelId", "aircraftName", "yearBought") OVERRIDING SYSTEM VALUE VALUES (2, 1, 1, 'ARBS-2', 2009);
+INSERT INTO public."Aircrafts" (id, "ownerId", "modelId", "aircraftName", "yearBought") OVERRIDING SYSTEM VALUE VALUES (3, 1, 2, 'OZL-1', 1999);
+
+INSERT INTO public."Airports" (id, "airportManagementId", name, code, city, country, "planeCapacity", "yearBuilt") OVERRIDING SYSTEM VALUE VALUES (1, 1, 'John F Kennedy', 'JFK', 'New York', 'US', 500, 1968);
+INSERT INTO public."Airports" (id, "airportManagementId", name, code, city, country, "planeCapacity", "yearBuilt") OVERRIDING SYSTEM VALUE VALUES (2, 1, 'De Gaulle', 'DGL', 'Paris', 'FR', 500, 1987);
+INSERT INTO public."Airports" (id, "airportManagementId", name, code, city, country, "planeCapacity", "yearBuilt") OVERRIDING SYSTEM VALUE VALUES (3, 2, 'Sabiha Gokcen', 'SAW', 'Istanbul', 'TR', 300, 1993);
+INSERT INTO public."Airports" (id, "airportManagementId", name, code, city, country, "planeCapacity", "yearBuilt") OVERRIDING SYSTEM VALUE VALUES (4, 2, 'Batum', 'BAT', 'Batumi', 'GE', 150, 2003);
+
+
+INSERT INTO public."Users" (name, phone, nationality, dob, email, id, password) OVERRIDING SYSTEM VALUE VALUES ('admin', '5555555555', 'TR', '2001-06-04', 'admin@admin.com', 1, '$2a$06$H2k4Tuj0DpQMTb7et/4hYOkX0BVhwoFcGxsWR7MW5B.TIz9AA1gxa');
+
+
+INSERT INTO public."Customers" (name, phone, nationality, dob, email, id, "customerRank") OVERRIDING SYSTEM VALUE VALUES ('ali tinay', '5545654645', 'TR', '1973-10-01', 'asdfa@mdfg.com', 2, 1);
+INSERT INTO public."Customers" (name, phone, nationality, dob, email, id, "customerRank") OVERRIDING SYSTEM VALUE VALUES ('ayse fatma', '5466456456', 'TR', '2022-12-18', 'rtytyr@yrty.com', 3, 2);
+INSERT INTO public."Customers" (name, phone, nationality, dob, email, id, "customerRank") OVERRIDING SYSTEM VALUE VALUES ('john mcmahon', '5555555555', 'TR', '1995-12-31', 'musteri@musteri.com', 1, 3);
+
+
+INSERT INTO public."Pilots" (name, phone, nationality, dob, email, salary, id, "yearStarted", "crewCount") OVERRIDING SYSTEM VALUE VALUES ('Pilothan pilotoglu', '3454534534', 'TR', '1973-11-14', 'thyrt@stgh.com', 250000, 1, 2003, 1);
+INSERT INTO public."Pilots" (name, phone, nationality, dob, email, salary, id, "yearStarted", "crewCount") OVERRIDING SYSTEM VALUE VALUES ('Jason cloudosn', '6546546456', 'US', '1993-02-10', 'rthrt@gtg.com', 67900, 2, 2004, 1);
+
+INSERT INTO public."CabinCrews" (id, "pilotId", name) OVERRIDING SYSTEM VALUE VALUES (1, 1, 'Pilothan-1');
+INSERT INTO public."CabinCrews" (id, "pilotId", name) OVERRIDING SYSTEM VALUE VALUES (2, 2, 'Cloudson-1');
+
+INSERT INTO public."CabinPersonels" (name, phone, nationality, dob, email, salary, id, "crewId") OVERRIDING SYSTEM VALUE VALUES ('ahmet mehmet', '3453453434', 'TR', '2022-12-18', 'thtryr@strh.com', 34543, 1, 1);
+INSERT INTO public."CabinPersonels" (name, phone, nationality, dob, email, salary, id, "crewId") OVERRIDING SYSTEM VALUE VALUES ('ali veli', '5465465464', 'TR', '2022-12-12', 'aret@gset.com', 45654, 2, 1);
+INSERT INTO public."CabinPersonels" (name, phone, nationality, dob, email, salary, id, "crewId") OVERRIDING SYSTEM VALUE VALUES ('jaxon yellowstone', '4564564565', 'AS', '2022-10-04', 'ret@crdgf.com', 456546, 3, 2);
+
+
+INSERT INTO public."GroundServicesChiefs" (name, phone, nationality, dob, email, salary, id, "yearStarted", "crewCount") OVERRIDING SYSTEM VALUE VALUES ('Chief Guy', '4564564564', 'US', '1953-11-04', '456654@ryty.com', 3453534, 1, 1989, 1);
+
+INSERT INTO public."GroundServicesCrews" (id, "gsCheifId", name) OVERRIDING SYSTEM VALUE VALUES (1, 1, 'chief-1');
+
+INSERT INTO public."GroundServicesPersonels" (name, phone, nationality, dob, email, salary, id, "crewId") OVERRIDING SYSTEM VALUE VALUES ('Gary Wright', '3454353453', 'TR', '2022-12-11', 'retert@rg.com', 4354354, 1, 1);
+
+
+INSERT INTO public."Routes" (id, "departureAirportId", "arrivalAirportId", "flightTime") OVERRIDING SYSTEM VALUE VALUES (1, 1, 3, 1065);
+INSERT INTO public."Routes" (id, "departureAirportId", "arrivalAirportId", "flightTime") OVERRIDING SYSTEM VALUE VALUES (2, 1, 2, 1175);
+INSERT INTO public."Routes" (id, "departureAirportId", "arrivalAirportId", "flightTime") OVERRIDING SYSTEM VALUE VALUES (3, 2, 4, 215);
+
+INSERT INTO public."Flights" (id, "aircraftId", "CCrewId", "GSCrewId", "routeId", "flightDate") OVERRIDING SYSTEM VALUE VALUES (1, 1, 1, 1, 1, '2022-12-23');
+INSERT INTO public."Flights" (id, "aircraftId", "CCrewId", "GSCrewId", "routeId", "flightDate") OVERRIDING SYSTEM VALUE VALUES (2, 2, 2, 1, 3, '2022-12-29');
+INSERT INTO public."Flights" (id, "aircraftId", "CCrewId", "GSCrewId", "routeId", "flightDate") OVERRIDING SYSTEM VALUE VALUES (3, 3, 1, 1, 2, '2022-12-30');
+
+INSERT INTO public."Trips" (id, "flightId", "customerId", "tripRating", amount) OVERRIDING SYSTEM VALUE VALUES (1, 1, 1, 5, 4534545);
+INSERT INTO public."Trips" (id, "flightId", "customerId", "tripRating", amount) OVERRIDING SYSTEM VALUE VALUES (2, 1, 2, 5, 3454353);
+INSERT INTO public."Trips" (id, "flightId", "customerId", "tripRating", amount) OVERRIDING SYSTEM VALUE VALUES (3, 1, 3, 3, 3453);
+INSERT INTO public."Trips" (id, "flightId", "customerId", "tripRating", amount) OVERRIDING SYSTEM VALUE VALUES (4, 2, 3, 5, 345534);
+INSERT INTO public."Trips" (id, "flightId", "customerId", "tripRating", amount) OVERRIDING SYSTEM VALUE VALUES (5, 2, 1, 3, 345534);
+INSERT INTO public."Trips" (id, "flightId", "customerId", "tripRating", amount) OVERRIDING SYSTEM VALUE VALUES (6, 3, 1, 5, 45656);
 
 ```
 
