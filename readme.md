@@ -14,7 +14,7 @@ Proje github linki : https://github.com/kadirkuzu/AirlinesProject
 
 ## Proje Konusu
 
-Özel uçak sahibi şirketlerin uçuşlarına yolcu kabul etmesini sağlayan bir uygulama ve bu uygulamaya ait veritabanı.
+Hava yolları şirketlerinin uçuşlarına yolcu kabul etmesini sağlayan bir uygulama ve bu uygulamaya ait veritabanı.
 
 ## İş Kuralları
 * Bir AircraftModel in 1 tane Manifacturer i vardır, bir Manifacturer birden fazla AircraftModel e sahip olabilir
